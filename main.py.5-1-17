@@ -1,0 +1,161 @@
+#!/usr/bin/python
+
+""" This script will access the EMA via http commands with SOAP XML content.
+    This will test Ivica's xml for vobb.
+    # 0851742253
+    # <mholbrook@eircom.ie>
+"""
+
+from __future__ import print_function
+import sys
+sys.path.insert(0, '/root/Dropbox/PYTHON/Marc/ACTIVE/BWWORK')  # Insert your base path here for libraries
+import requests
+import httplib2
+import urllib2
+import httplib
+import string
+import commands
+from requests.auth import HTTPBasicAuth
+from time import sleep
+import sessionid
+import ocip_functions as ocip
+
+
+ocip_username = 'admin'
+ocip_password = 'admin'
+
+#xsp_host = '10.147.21.198'  # Live Node
+xsp_host = '10.144.134.198'   # Test Plant
+ocip_port = '2208'
+
+
+#Next 3 lines to setup prov logging
+"""import cs1k_logging_config as cs1klog
+cs1klog.setup_logger('prov', './bwprovisioning.log')
+prov_logger = cs1klog.logging.getLogger('prov')
+
+logger = cs1klog.logger 
+"""
+
+   
+    
+def main():
+    """
+        Testing
+    """
+    def make_payload():
+        '''
+        '''
+        _sessionid = sessionid.id_generator(32)    
+        head = (ocip.ocip_head(_sessionid))
+        tail = (ocip.ocip_bottom())
+        command = (ocip.ocip_authentication(ocip_username))
+        xml = head + command + tail
+        encoded_body = xml.replace("\n", "")
+        return encoded_body
+    
+    def bash_connect():
+        '''
+        '''
+        payload = make_payload()
+        print(type(payload))
+        output = commands.getoutput("marc.sh " + payload)
+
+
+    #ocip.ocipLogin(ocip_username, ocip_password, _sessionid)
+    """
+    try:
+        bash_connect()
+    except:
+        exit() 
+
+    """
+    try:
+        print('Using the Requests Module')
+        #headers={'cache-control':'no-cache', 'Accept-Encoding':'ISO-8859-1', 'content-type':'text/xml; charset=ISO-8859-1', \
+        #    'Accept': 'application/soap+xml, application/dime, multipart/related, text/*', }
+        headers = {'content-type':'text/xml; charset=ISO-8859-1', 'SOAPAction':'processOCIMessage'}
+        encoded_body = make_payload()
+        print (encoded_body)
+        r = requests.post('http://10.144.134.198:2208', data = encoded_body, timeout = 5, headers = headers, auth = ('admin', 'admin'))
+    except requests.exceptions.RequestException as e:
+        print (e)
+        
+        
+    '''
+    try:
+        print ('Starting Stage 1')
+        headers={'cache-control':'no-cache', 'Accept-Encoding':'ISO-8859-1' }
+        payload = make_payload()
+        urlr = urllib2.Request('http://10.144.134.198:2208', body = payload, headers = headers)
+        r= urllib2.urlopen(urlr)
+    except:
+        print ('Urllib2 crap')   
+    '''
+    try:
+        print('Starting stage httplib2')
+        encoded_body = make_payload()
+        http_agent = httplib2.Http(cache=None, timeout= 5, disable_ssl_certificate_validation=True)
+        httplib2.debuglevel = 1
+        response, response_body = http_agent.request('http://10.144.134.198:2208', method="POST", body=encoded_body, \
+            headers={'cache-control':'no-cache', 'Accept-Encoding':'ISO-8859-1', 'content-type':'text/xml; charset=ISO-8859-1', \
+            'Accept': 'application/soap+xml, application/dime, multipart/related, text/*', })
+        print (response, response_body)
+
+    except:
+        print('Http2 orig crap')
+    try:
+        print ('Starting Stage 3: httplib2 again????')
+        encoded_body = make_payload()
+        h = httplib2.Http('.cache')
+        httplib2.debuglevel = 1
+        h.add_credentials('admin', 'admin')
+        try:
+            headers={'cache-control':'no-cache', 'Accept-Encoding':'ISO-8859-1', 'content-type':'text/xml; charset=ISO-8859-1', \
+            'Accept': 'application/soap+xml, application/dime, multipart/related, text/*', }
+            response, content = h.request('http://10.144.134.198:2208', timeout=5 ,headers = headers, method = 'GET', body = encoded_body )
+        except requests.exceptions.RequestException as e:
+            print (e)
+            
+        print (response)
+        print (content)
+    except:
+        print('Error in httplib2')
+    '''
+    try:
+        print ("Starting Stage 4")
+        host = "10.144.134.198"
+        port = '2208'
+        url = "http://10.144.134.198:2208"
+        username = 'admin'
+        password = 'admin'
+        message = make_payload()
+         
+        webservice = httplib.HTTPConnection(host, port, timeout = 5)
+        webservice.set_debuglevel = 5
+        # write your headers
+        webservice.connect()
+        webservice.putrequest("POST", url)
+        webservice.putheader("Host", host)
+        webservice.putheader("User-Agent", "Python http auth")
+        webservice.putheader("Content-type", "text/xml; charset=\"ISO-8859-1\"")
+        webservice.putheader("Content-length", "%d" % len(message))
+        # write the Authorization header like: 'Basic base64encode(username + ':' + password) 
+        webservice.endheaders()
+        webservice.send(message)
+        # get the response
+        statuscode, statusmessage, header = webservice.getresponse()
+        print ("Response: ", statuscode, statusmessage)
+        print ("Headers: ", header)
+        res = webservice.getfile().read()
+        print ('Content: ', res)
+    except:
+        print ("Stage 4 Crap")
+    '''
+
+    #ocip.ocipLogin(ocip_username, ocip_password, _sessionid)
+
+if __name__ == "__main__":
+#    print ('Start')
+    main() 
+

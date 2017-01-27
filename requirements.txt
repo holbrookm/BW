@@ -1,0 +1,8 @@
+requests
+cgi
+hashlib
+HTMLParser
+httplib2
+random
+re
+

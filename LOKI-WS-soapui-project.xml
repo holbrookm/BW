@@ -1,0 +1,1210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="LOKI_WS" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" id="b2a15746-5b6e-45c4-b0b6-e8135e5c58f7" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LokiServiceBinding" type="wsdl" bindingName="{https://loki-demo2-r20.leonidsystems.com/webservice}LokiServiceBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/SOAP_PROJECTS/webservicewsdl.wsdl" id="2807a24a-edc2-40fc-9ce3-08718646d6f4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\D:\SOAP_PROJECTS\webservicewsdl.wsdl"><con:part><con:url>file:\D:\SOAP_PROJECTS\webservicewsdl.wsdl</con:url><con:content><![CDATA[<definitions name="LokiService" targetNamespace="https://loki-demo2-r20.leonidsystems.com/webservice" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://loki-demo2-r20.leonidsystems.com/webservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="https://loki-demo2-r20.leonidsystems.com/webservice"/>
+  </types>
+  <portType name="LokiServicePort">
+    <operation name="processRequest">
+      <documentation>Process Loki XML request</documentation>
+      <input message="tns:processRequestIn"/>
+      <output message="tns:processRequestOut"/>
+    </operation>
+    <operation name="parseDeviceGetResponse">
+      <documentation>Process DeviceGetRequest BWKS response to get only the parameters we need.</documentation>
+      <input message="tns:parseDeviceGetResponseIn"/>
+      <output message="tns:parseDeviceGetResponseOut"/>
+    </operation>
+  </portType>
+  <binding name="LokiServiceBinding" type="tns:LokiServicePort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="processRequest">
+      <soap:operation soapAction="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://loki-demo2-r20.leonidsystems.com/webservice"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://loki-demo2-r20.leonidsystems.com/webservice"/>
+      </output>
+    </operation>
+    <operation name="parseDeviceGetResponse">
+      <soap:operation soapAction="https://loki-demo2-r20.leonidsystems.com/webservice#parseDeviceGetResponse"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://loki-demo2-r20.leonidsystems.com/webservice"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://loki-demo2-r20.leonidsystems.com/webservice"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="LokiServiceService">
+    <port name="LokiServicePort" binding="tns:LokiServiceBinding">
+      <soap:address location="https://loki-demo2-r20.leonidsystems.com/webservice"/>
+    </port>
+  </service>
+  <message name="processRequestIn">
+    <part name="xml" type="xsd:string"/>
+  </message>
+  <message name="processRequestOut">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="parseDeviceGetResponseIn">
+    <part name="ociResponse" type="soap-enc:Array"/>
+  </message>
+  <message name="parseDeviceGetResponseOut">
+    <part name="return" type="soap-enc:Array"/>
+  </message>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint></con:endpoints><con:operation isOneWay="false" action="https://loki-demo2-r20.leonidsystems.com/webservice#parseDeviceGetResponse" name="parseDeviceGetResponse" bindingOperationName="parseDeviceGetResponse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="cef1deb7-d011-4e76-a8dc-818e2d13711e"><con:settings/><con:call name="Request 1" id="b9fe40df-3d8d-4acb-b581-ee6f6c0fca64"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:parseDeviceGetResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ociResponse xsi:type="soapenc:Array" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+            <!--You may enter ANY elements at this point-->
+         </ociResponse>
+      </web:parseDeviceGetResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#parseDeviceGetResponse"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest" name="processRequest" bindingOperationName="processRequest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="c92e70c7-8d0e-4475-986e-65d52d83b102"><con:settings/><con:call name="LoginRequest" id="839b729b-e156-4755-ab45-201fc9021a57"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<LokiCommand xmlns="" xsi:type="LoginRequest">
+<userId>litclwsadm</userId>
+<password>zx5E72!5F</password>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CustomerAddRequest" id="81442454-44e0-44e3-a112-62d83c3ac945"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="CustomerAddRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">tonytestxy</customerId>
+<defaultDomain xmlns="">web.ngv.eircom.net</defaultDomain>
+<customerName xmlns="">XX_Limerick</customerName>
+<supportEmail xmlns=""></supportEmail>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CustomerGetRequest" id="5b4b005e-fb39-4ff7-8510-b3b24b125b2a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="CustomerGetRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">tonytest@ngv.eircom.net</customerId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteGetRequest" id="3b1272b8-59db-4c09-8c00-654e6a093921"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteGetRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId>XLK1ByzpN@ngv.eircom.net</customerId>
+<siteId>XLK_AByzpN-CTX-GRP</siteId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserGetRequest" id="eb9c02a0-5dfc-419f-b6e8-08d3d651c61d"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserGetRequest"  retries="retries1" abort="false" echo="" seq="">
+<userId xmlns="">35314156791@test.eircom.com</userId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteAddRequest" id="d9d237e8-bc12-42b9-9a50-d2dcf7805c02"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteAddRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XX_LIMERICK</customerId>
+<siteId xmlns="">TonySitexx</siteId>
+<siteName xmlns="">TonySitexx</siteName>
+<siteTemplate xmlns="">HostedOffice</siteTemplate>
+<userLimit xmlns="">1</userLimit>
+<address xmlns="">
+<addressLine1>addr Line 1</addressLine1>
+<addressLine2>addr Line 2</addressLine2>
+<city>TestCity</city>
+<stateOrProvince>AK</stateOrProvince>
+<stateOrProvinceDisplayName>Alaska</stateOrProvinceDisplayName>
+<zipOrPostalCode>12345</zipOrPostalCode>
+<country>TestCountry</country>
+</address>
+<extLength xmlns="">4</extLength>
+<timeZone xmlns="">Eire</timeZone>
+<siteAdministratorId xmlns="">lwsaxxx12345</siteAdministratorId>
+<siteAdministratorPassword xmlns="">qweqwe123123</siteAdministratorPassword>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserAddRequest" id="c055496f-ce54-4703-8a28-426760c3e2b2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserAddRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<userId xmlns="">35314156791@test.eircom.com</userId>
+<TNAdd xmlns="">
+   <phoneNumber>14156791</phoneNumber>
+   <tempPhoneNumber></tempPhoneNumber>
+   <tnManagementCase>2</tnManagementCase>
+</TNAdd>
+<lastName xmlns="">35314156791</lastName>
+<firstName xmlns="">LWS3</firstName>
+<sipAuthUsername>+35314156791@test.eircom.com</sipAuthUsername>
+<sipAuthPassword>2dZZ4D(~</sipAuthPassword>
+<email xmlns=""/>
+<department xmlns=""/>
+<Vmail xmlns="">true</Vmail>
+<VmailXfer xmlns=""/>
+<timeZone xmlns="">Eire</timeZone>
+<trunkGroup xmlns=""/>
+<callingLineIdPhoneNumber xmlns=""/>
+<alaCarteServices xmlns="">
+<userService>Shared Call Appearance 5</userService>
+</alaCarteServices>
+<userDevice>
+   <deviceType>Yealink T21P</deviceType>
+   <deviceName>35314156791</deviceName>
+</userDevice>
+<servicePacks xmlns="">
+<servicePackName>Premium</servicePackName>
+</servicePacks>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of UserGetRequest no retries" id="ec91515a-aaa4-441d-b99b-32e8f3c0cf6e"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserGetRequest">
+<userId xmlns="">35361207545@ngv.eircom.net</userId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserDeleteRequest" id="274d850a-da66-4c57-af83-38e333b858f4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserDeleteRequest"  retries="retries1" abort="false" echo="" seq="">
+<userId xmlns="">+35361207505@ngv.eircom.net</userId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of SiteAddRequest no retries" id="7912c3f1-f02d-4454-9ac6-3fb67d5d6856"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteAddRequest" retries="" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">TonySite1@ngv.eircom.net</siteId>
+<siteName xmlns="">TonySite1</siteName>
+<siteTemplate xmlns="">Basic IP Centrex</siteTemplate>
+<userLimit xmlns="">1</userLimit>
+<address xmlns="">
+<addressLine1>addr Line 1</addressLine1>
+<addressLine2>addr Line 2</addressLine2>
+<city>TestCity</city>
+<stateOrProvince>AK</stateOrProvince>
+<stateOrProvinceDisplayName>Alaska</stateOrProvinceDisplayName>
+<zipOrPostalCode>12345</zipOrPostalCode>
+<country>TestCountry</country>
+</address>
+<extLength xmlns="">4</extLength>
+<timeZone xmlns="">Eire</timeZone>
+<CLIDAdd xmlns="">
+<phoneNumber>4155555555</phoneNumber>
+<tnManagementCase>2</tnManagementCase>
+</CLIDAdd>
+<siteAdministratorId xmlns="">lwsadmin@example.com</siteAdministratorId>
+<siteAdministratorPassword xmlns="">qweqwe123123</siteAdministratorPassword>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of LoginRequest" id="6553a717-b1f3-4818-8dee-d83faacf6020"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+ <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+<LokiDocument xmlns="Loki"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sessionId>ada7j7i67fasklsfu6fs</sessionId>
+  <LokiCommand xmlns="" xsi:type="LoginRequest" retries="retries1" abort="false" echo="" seq="">
+    <userId>e2eprov</userId>
+    <password>Eircom123!!</password>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+ </soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="HuntGroupInstanceAddRequest" id="c3db8be7-9b91-4a04-91d6-c3af67573baf"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="HuntGroupInstanceAddRequest" retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">HO1_Group_1</siteId>
+<serviceUserId xmlns="">+353652075899@ngv.eircom.net</serviceUserId>
+<TNAdd>
+<phoneNumber>652075899</phoneNumber>
+<tnManagementCase>2</tnManagementCase>
+</TNAdd>
+<name xmlns="">my namexy</name>
+<callingLineIdFirstName>LeoAAFNxy</callingLineIdFirstName>
+<callingLineIdLastName>LeoAALNxy</callingLineIdLastName>
+<timeZone>Eire</timeZone>
+<language>English</language>
+<alaCarteServices xmlns="">
+<userService>Alternate Numbers</userService>
+</alaCarteServices>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="HuntGroupInstanceDeleteRequest" id="e51fbb1d-8345-427c-8bf1-5d01a62f6721"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="HuntGroupInstanceDeleteRequest" retries="retries1" abort="false" echo="" seq="">
+<serviceUserId xmlns="">+35361207518@ngv.eircom.net</serviceUserId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteDnActivateListRequest-NA" id="081a3f24-514f-4d66-ab1c-a6c4fdf178ac"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteDnActivateListRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">HO1_Group_1</siteId>
+<phoneNumber>61207505</phoneNumber>
+<phoneNumber>61207345</phoneNumber>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteDnDeactivateListRequest-NA" id="1135a96e-a146-46b1-89a2-697dd127e673"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteDnDeactivateListRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">HO1_Group_1</siteId>
+<phoneNumber>61207505</phoneNumber>
+<phoneNumber>61207545</phoneNumber>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="AutoAttendantInstanceAddRequest" id="f4b16985-eba8-493a-adb8-129a569029d1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="AutoAttendantInstanceAddRequest" retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">HO1_Group_1</siteId>
+<serviceUserId xmlns="">+35361207718@ngv.eircom.net</serviceUserId>
+<TNAdd>
+<phoneNumber>61207718</phoneNumber>
+<tnManagementCase>2</tnManagementCase>
+</TNAdd>
+<extension xmlns="">1212</extension>
+<name xmlns="">my name</name>
+<callingLineIdFirstName>LeoAAFN</callingLineIdFirstName>
+<callingLineIdLastName>LeoAALN</callingLineIdLastName>
+<timeZone>Eire</timeZone>
+<language>English</language>
+<alaCarteServices xmlns="">
+<userService>Alternate Numbers</userService>
+</alaCarteServices>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="AutoAttendantInstanceDeleteRequest" id="20e12941-306d-4fb8-b756-56fc1a836bfc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="AutoAttendantInstanceDeleteRequest" retries="retries1" abort="false" echo="" seq="">
+<serviceUserId xmlns="">+35361207518@ngv.eircom.net</serviceUserId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserServiceAssignRequest" id="5a26017c-6f28-4b4d-86da-55578385f8d3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserServiceAssignRequest"  retries="retries1" abort="false" echo="" seq="">
+<userId xmlns="">35314156799@test.eircom.com</userId>
+<servicePacks xmlns="">
+<servicePackName>Enhanced</servicePackName>
+</servicePacks>
+<alaCarteServices xmlns="">
+<userService>Hoteling Host</userService>
+</alaCarteServices>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserServiceUnassignRequest" id="bfed65ec-9661-41ff-86ce-b084d7e45479"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserServiceUnassignRequest"  retries="retries1" abort="false" echo="" seq="">
+<userId xmlns="">35314156799@test.eircom.com</userId>
+<servicePacks xmlns="">
+<servicePackName>Enhanced</servicePackName>
+</servicePacks>
+<alaCarteServices xmlns="">
+<userService>Shared Call Appearance 5</userService>
+</alaCarteServices>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteDnAssignListRequest-NA_DoneByAdd" id="212717e3-4969-488b-9889-5cd075619bc0"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteDnAssignListRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">HO1_Group_1</siteId>
+<phoneNumber>61407548</phoneNumber>
+<phoneNumber>61407579</phoneNumber>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteDnUnassignListRequest" id="110bf13d-02be-4851-8063-9d9a6314b398"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteDnUnassignListRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">HO1_Group_1</siteId>
+<phoneNumber>61207518</phoneNumber>
+<phoneNumber>61207545</phoneNumber>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CustomerAdminAddRequest" id="f24c7608-3330-4d9a-a4bb-53f78e6de079"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="CustomerAdminAddRequest" retries="" abort="false" echo="" seq="">
+<customerId xmlns="">tonytest</customerId>
+<customerAdministratorId xmlns="">tonytes1admin</customerAdministratorId>
+<lastName xmlns="">LWS</lastName>
+<firstName xmlns="">Test</firstName>
+<language xmlns="">English</language>
+<administratorType xmlns="">Normal</administratorType>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of SiteGetRequest" id="dafeb111-fb3d-45af-b9da-6dbe64324b9c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="SiteGetRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">HO_1@ngv.eircom.net</customerId>
+<siteId xmlns="">HO1_Group_1</siteId>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteGetOCIRequest-failure" id="e42f3865-f5dc-47d8-b604-6107b8b89535"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+  <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sessionId>bjfghghghdrs890</sessionId>
+  <requestId/>
+  <broadworksURL/>
+  <LokiCommand xmlns:ns1="Loki"xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+    <ociCall xmlns="">
+        <BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <sessionId xmlns="">bjfghghghdrs890</sessionId>
+            <command xsi:type="GroupDnGetListRequest" xmlns="">
+                  <serviceProviderId>Connections</serviceProviderId>
+                  <groupId>VDMgroup</groupId>
+            </command>
+         </BroadsoftDocument>
+    </ociCall>
+  </LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteGetOCIRequest" id="dfad99be-5017-44d8-8647-72a306b9ff72"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+              <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <sessionId>bjfghghghdrs890</sessionId>
+                  <requestId/>
+                  <broadworksURL/>
+                  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+                     <ociCall>
+                        &lt;BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+                        &lt;sessionId&gt;bjfghghghdrs890&lt;/sessionId&gt;
+                        &lt;command xsi:type="GroupDnGetListRequest" xmlns=""&gt;
+                            &lt;serviceProviderId&gt;XLK1ByzpN@ngv.eircom.net&lt;/serviceProviderId&gt;
+                            &lt;groupId&gt;XLK_AByzpN-CTX-GRP&lt;/groupId&gt;
+                        &lt;/command&gt;
+                        &lt;/BroadsoftDocument&gt;
+                     </ociCall>
+                  </LokiCommand>
+              </LokiDocument>         
+  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DeviceDeleteRequest" id="21af9ab6-5477-4144-ac72-05da89a4ff6c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="DeviceDeleteRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<deviceName xmlns="">35314156799</deviceName>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DeviceAddRequest" id="e055ad04-a179-4f7e-b890-cd44c1f36d2e"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="DeviceAddRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<deviceName xmlns="">35314156799</deviceName>
+<deviceType xmlns="">a_Fixed_reg</deviceType>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCISystemDnGetUtilisationRequest" id="03f0ce1b-8b18-4228-a309-d518ded74de8"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;SystemDnGetUtilizationRequest14sp3&quot; xmlns=&quot;&quot;&gt;
+				&lt;phoneNumber&gt;+35314156791&lt;/phoneNumber&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserModifyRequest(Device)" id="2cc1c7e1-1634-4372-8413-e918d0064597"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserModifyRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<userId xmlns="">35314156796@test.eircom.com</userId>
+<deviceType>a_Fixed_reg</deviceType>
+<deviceLevel>Group</deviceLevel>
+<deviceLineport>+35314156796@test.eircom.com</deviceLineport>
+<deviceName>014156796</deviceName>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserModifyRequest" id="91ebb444-2262-45cb-b1b9-f379006e0dea"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserModifyRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<userId xmlns="">35314156799@test.eircom.com</userId>
+<deviceType>a_Fixed_reg</deviceType>
+<deviceLevel>Group</deviceLevel>
+<deviceLineport>+35314156799@test.eircom.com</deviceLineport>
+<deviceName>35314156799</deviceName>
+<TNAdd xmlns="">
+   <phoneNumber>14156799</phoneNumber>
+   <tempPhoneNumber></tempPhoneNumber>
+   <tnManagementCase>2</tnManagementCase>
+</TNAdd>
+<lastName xmlns="">3534156799</lastName>
+<firstName xmlns="">LWS3</firstName>
+<email xmlns=""/>
+<department xmlns=""/>
+<Vmail xmlns="">false</Vmail>
+<VmailXfer xmlns=""/>
+<timeZone xmlns="">Eire</timeZone>
+<trunkGroup xmlns=""/>
+<callingLineIdPhoneNumber xmlns=""/>
+<alaCarteServices xmlns="">
+<userService>Shared Call Appearance 5</userService>
+</alaCarteServices>
+<servicePacks xmlns="">
+<servicePackName>Enhanced</servicePackName>
+</servicePacks>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of DeviceAddRequest" id="74717ba3-a402-4fca-91a2-508420ceab5c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="DeviceAddRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<deviceName xmlns="">014156796</deviceName>
+<deviceType xmlns="">a_Fixed_reg</deviceType>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserModifyRequest(Device unassign)" id="aae21fe0-29b8-4cb2-b487-0c80d05ae477"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserModifyRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<userId xmlns="">35314156799@test.eircom.com</userId>
+<deviceName/>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="UserAddRequest(Device at top level)" id="f0b3b3bd-81bf-46a6-bb9c-71c6a568d851"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+         <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId>bjfghghghdrs890</sessionId>
+<requestId/>
+<broadworksURL/>
+<LokiCommand xsi:type="UserAddRequest"  retries="retries1" abort="false" echo="" seq="">
+<customerId xmlns="">XLMK46TC@test.eircom.com</customerId>
+<siteId xmlns="">XLMK46TC_A-CTX-GRP</siteId>
+<userId xmlns="">35314156797@test.eircom.com</userId>
+<deviceType>Yealink T21P</deviceType>
+<deviceName>35314156797</deviceName>
+   <TNAdd xmlns="">
+   <phoneNumber>14156797</phoneNumber>
+   <tempPhoneNumber></tempPhoneNumber>
+   <tnManagementCase>2</tnManagementCase>
+</TNAdd>
+<lastName xmlns="">35314156797</lastName>
+<firstName xmlns="">LWS3</firstName>
+<sipAuthUsername>+35314156797@test.eircom.com</sipAuthUsername>
+<sipAuthPassword>2dZZ4D(~</sipAuthPassword>
+<email xmlns=""/>
+<department xmlns=""/>
+<Vmail xmlns="">false</Vmail>
+<VmailXfer xmlns=""/>
+<timeZone xmlns="">Eire</timeZone>
+<trunkGroup xmlns=""/>
+<callingLineIdPhoneNumber xmlns=""/>
+<alaCarteServices xmlns="">
+<userService>Shared Call Appearance 5</userService>
+</alaCarteServices>
+<servicePacks xmlns="">
+<servicePackName>Premium</servicePackName>
+</servicePacks>
+</LokiCommand>
+</LokiDocument>]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="SiteGetOCIRequest(no nos)" id="3353fd2b-5135-4761-b9ad-99ea676a124c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+              <LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <sessionId>bjfghghghdrs890</sessionId>
+                  <requestId/>
+                  <broadworksURL/>
+                  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+                     <ociCall>
+                        &lt;BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+                        &lt;sessionId&gt;bjfghghghdrs890&lt;/sessionId&gt;
+                        &lt;command xsi:type="GroupDnGetListRequest" xmlns=""&gt;
+                            &lt;serviceProviderId&gt;XX_LIMERICK&lt;/serviceProviderId&gt;
+                            &lt;groupId&gt;TonySitexx&lt;/groupId&gt;
+                        &lt;/command&gt;
+                        &lt;/BroadsoftDocument&gt;
+                     </ociCall>
+                  </LokiCommand>
+              </LokiDocument>         
+  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCIGroupAccessDeviceModifyRequest14" id="b62af07e-3d9b-4145-9256-1f94447b2779"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;GroupAccessDeviceModifyRequest14&quot; xmlns=&quot;&quot;&gt;
+					&lt;serviceProviderId&gt;X2009777523@ngv.eircom.net&lt;/serviceProviderId&gt;
+					&lt;groupId&gt;X2009777523-CTX-GRP&lt;/groupId&gt;
+					&lt;deviceName&gt;014198649&lt;/deviceName&gt;
+					&lt;configurationMode&gt;Default&lt;/configurationMode&gt;
+					&lt;transportProtocol&gt;Unspecified&lt;/transportProtocol&gt;
+					&lt;useCustomUserNamePassword&gt;true&lt;/useCustomUserNamePassword&gt;
+					&lt;accessDeviceCredentials&gt;
+					      &lt;userName&gt;014198649&lt;/userName&gt;
+					      &lt;password&gt;A12343d484&lt;/password&gt;
+					&lt;/accessDeviceCredentials&gt; 
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCISystemDnGetUtilisationRequest-Assigned no" id="43fc7696-d2b4-45c2-997d-fe5f1b73aba2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;SystemDnGetUtilizationRequest14sp3&quot; xmlns=&quot;&quot;&gt;
+				&lt;phoneNumber&gt;+35361407548&lt;/phoneNumber&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of OCISystemDnGetUtilisationRequest-Assigned no" id="8408851f-2352-4f25-8cf1-dab14ab8d064"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;SystemDnGetUtilizationRequest14sp3&quot; xmlns=&quot;&quot;&gt;
+				&lt;phoneNumber&gt;+35314288874&lt;/phoneNumber&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Copy of OCISystemDnGetUtilisationRequest" id="3204e77c-73c5-4dbb-8e70-485a4cf1d82b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;SystemDnGetUtilizationRequest14sp3&quot; xmlns=&quot;&quot;&gt;
+				&lt;phoneNumber&gt;+35314288933&lt;/phoneNumber&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCISystemDnGetUtilisationRequest-Alternate no" id="2187cfd4-f3ba-4b7a-b932-2363b47e6c35"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;SystemDnGetUtilizationRequest14sp3&quot; xmlns=&quot;&quot;&gt;
+				&lt;phoneNumber&gt;+35361407579&lt;/phoneNumber&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCI-GroupDnGetAvailableListRequest-test" id="64cde977-d3ec-4d9d-b31b-eb0210b7b344"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;GroupDnGetAvailableListRequest&quot; xmlns=&quot;&quot;&gt;
+				&lt;serviceProviderId>HO_1@ngv.eircom.net&lt;/serviceProviderId&gt;
+        			&lt;groupId&gt;HO1_Group_1&lt;/groupId&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCISystemDnGetUtilisationRequest-User with alternate no" id="25d2660f-5a49-4096-bbcb-beea6d394b2c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;SystemDnGetUtilizationRequest14sp3&quot; xmlns=&quot;&quot;&gt;
+				&lt;phoneNumber&gt;+35361207549&lt;/phoneNumber&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCI-GroupDnGetAssignmentListRequest18-check" id="dbc3dc0a-a5d5-40d9-aa37-fbed0e65b84b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;GroupDnGetAssignmentListRequest18&quot; xmlns=&quot;&quot;&gt;
+				&lt;serviceProviderId>X2009777523@ngv.eircom.net&lt;/serviceProviderId&gt;
+        			&lt;groupId&gt;X2009777523-CTX-GRP&lt;/groupId&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="BAT HV OCI-GroupDnGetAvailableListRequest" id="adeaffcf-4d64-44e7-a41b-08f43284a50c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;GroupDnGetAvailableListRequest&quot; xmlns=&quot;&quot;&gt;
+				&lt;serviceProviderId>X150216@ngv.eircom.net&lt;/serviceProviderId&gt;
+        			&lt;groupId&gt;X150216-CTX-GRP&lt;/groupId&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="OCISystemDnGetSummaryListRequest - List all enterprises and numbers" id="e2473a72-5235-4619-82d1-40e16f7072bb"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="SOAPAction" value="&quot;https://stdtst01.eircom.ie/webservice#processRequest&quot;"/>
+  <con:entry key="User-Agent" value="Apache/2.2.15 (Red Hat)"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://stdtst01.eircom.ie/webservice</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://loki-demo2-r20.leonidsystems.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:processRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <xml xsi:type="xsd:string"><![CDATA[
+		<LokiDocument xmlns="Loki" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		 	<sessionId>bjfghghghdrs890</sessionId>
+			<requestId/>
+			<broadworksURL/>
+		  <LokiCommand xmlns:ns1="Loki" xsi:type="ProcessOCIRequest" ns1:retries="" ns1:abort="false" ns1:echo="" ns1:seq="">
+			<ociCall xmlns="">&lt;BroadsoftDocument protocol=&quot;OCI&quot; xmlns=&quot;C&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+				&lt;sessionId xmlns=&quot;&quot;&gt;bjfghghghdrs890&lt;/sessionId&gt;
+				&lt;command xsi:type=&quot;SystemDnGetSummaryListRequest&quot; xmlns=&quot;&quot;&gt;
+				&lt;/command&gt;
+				&lt;/BroadsoftDocument&gt;
+			</ociCall>
+		  </LokiCommand>
+		</LokiDocument>  ]]]]>><![CDATA[</xml>
+      </web:processRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://loki-demo2-r20.leonidsystems.com/webservice#processRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

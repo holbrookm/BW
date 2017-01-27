@@ -1,0 +1,12 @@
+HOST="192.168.100.200";
+PORT="2208";
+OCI_LOGINID="fffilimonov";
+OCI_PASSWORD="123456";
+TIMEOUT="0.2";
+
+ENT="enterprise";
+GROUP="group";
+DEVPROFNAME="deviceprofile";
+DEVPROFLEVEL="Service Provider";
+#DEVPROFLEVEL="Group";
+DOMAIN="voip.broad.com";

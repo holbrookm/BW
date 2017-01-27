@@ -1,0 +1,12 @@
+HOST="10.144.134.198";
+PORT="2208";
+OCI_LOGINID="admin";
+OCI_PASSWORD="admin";
+TIMEOUT="30";
+
+ENT="enterprise";
+GROUP="group";
+DEVPROFNAME="deviceprofile";
+DEVPROFLEVEL="Service Provider";
+#DEVPROFLEVEL="Group";
+DOMAIN="voip.broad.com";

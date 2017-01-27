@@ -1,0 +1,16 @@
+
+trap 'exit -1' ERR;
+
+checkecho ()
+{
+    RESULT=`egrep "command echo|command type"`;
+    ERR=`echo $RESULT | grep "ErrorResponse"`;
+    OK=`echo $RESULT | grep "SuccessResponse"`;
+    if [ "$ERR" == "" ]; then
+        echo "SUCCESS";
+    else
+    echo "ERROR"
+    echo $RESULT;
+        exit -1;
+    fi;
+}

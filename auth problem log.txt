@@ -1,0 +1,115 @@
+ USING POST:
+ ==================
+ POST / HTTP/1.1
+Host: 10.144.134.198:2208
+Connection: keep-alive
+Accept-Encoding: ISO-8859-1
+Accept: application/soap+xml, application/dime, multipart/related, text/*
+User-Agent: python-requests/2.12.4
+content-type: text/xml; charset=ISO-8859-1
+cache-control: no-cache
+Content-Length: 376
+Authorization: Basic YWRtaW46YWRtaW4=
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<sessionId xmlns="">NM5X789BA9OY3J10S9WY7LOGG28DSYN9</sessionId>  
+<command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<userId>admin</userId>  
+</command>
+</BroadsoftDocument>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId xmlns="">NM5X789BA9OY3J10S9WY7LOGG28DSYN9</sessionId>
+<command echo="" xsi:type="AuthenticationResponse" xmlns="">
+<userId>admin</userId>
+<nonce>1483620599353</nonce>
+<passwordAlgorithm>MD5</passwordAlgorithm>
+</command>
+</BroadsoftDocument>
+
+ 
+ 
+ try:
+        print('Using the Requests Module')
+        headers={'cache-control':'no-cache', 'Accept-Encoding':'ISO-8859-1', 'content-type':'text/xml; charset=ISO-8859-1', \
+            'Accept': 'application/soap+xml, application/dime, multipart/related, text/*', }
+        encoded_body = make_payload()
+        r = requests.get('http://10.144.134.198:2208', data = encoded_body, headers = headers, auth = ('admin', 'admin'))
+    except requests.exceptions.RequestException as e:
+        print (e)
+
+Using the Requests Module
+<?xml version="1.0" encoding="ISO-8859-1"?>
+    <BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sessionId xmlns="">DJ1U3ZFW54J9068R1YDNOE0CNSICCTJS</sessionId> 
+    <command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">  
+    <userId>admin</userId> 
+    </command>
+    </BroadsoftDocument>
+('Connection aborted.', BadStatusLine('<?xml version="1.0" encoding="ISO-8859-1"?>\n',))
+
+Trace on Host shows:
+
+GET / HTTP/1.1
+Host: 10.144.134.198:2208
+Connection: keep-alive
+Accept-Encoding: ISO-8859-1
+Accept: application/soap+xml, application/dime, multipart/related, text/*
+User-Agent: python-requests/2.12.4
+content-type: text/xml; charset=ISO-8859-1
+cache-control: no-cache
+Content-Length: 376
+Authorization: Basic YWRtaW46YWRtaW4=
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<sessionId xmlns="">DJ1U3ZFW54J9068R1YDNOE0CNSICCTJS</sessionId>  
+<command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<userId>admin</userId>  
+</command>
+</BroadsoftDocument>
+
+RESPONSE:
+=========
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId xmlns="">DJ1U3ZFW54J9068R1YDNOE0CNSICCTJS</sessionId>
+<command echo="" xsi:type="AuthenticationResponse" xmlns="">
+<userId>admin</userId>
+<nonce>1483616534128</nonce>
+<passwordAlgorithm>MD5</passwordAlgorithm>
+</command>
+</BroadsoftDocument>
+
+
+
+ try:
+        print('Starting stage httplib2')
+        encoded_body = make_payload()
+        http_agent = httplib2.Http(cache=None, timeout= 5, disable_ssl_certificate_validation=True)
+        httplib2.debuglevel = 1
+        response, response_body = http_agent.request('http://10.144.134.198:2208', method="POST", body=encoded_body, \
+            headers={'cache-control':'no-cache', 'Accept-Encoding':'ISO-8859-1', 'content-type':'text/xml; charset=ISO-8859-1', \
+            'Accept': 'application/soap+xml, application/dime, multipart/related, text/*', })
+        print (response, response_body)
+
+    except:
+
+Starting stage httplib2
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<sessionId xmlns="">TNN80U63D56CMMB8DV929UZT22177EAZ</sessionId>  
+<command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<userId>admin</userId>  
+</command>
+</BroadsoftDocument>
+connect: (10.144.134.198, 2208) ************
+send: 'POST / HTTP/1.1\r\nHost: 10.144.134.198:2208\r\nContent-Length: 376\r\nuser-agent: Python-httplib2/0.9.2 (gzip)\r\ncontent-type: text/xml; charset=ISO-8859-1\r\naccept-encoding: ISO-8859-1\r\naccept: application/soap+xml, application/dime, multipart/related, text/*\r\ncache-control: no-cache\r\n\r\n<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<sessionId xmlns="">TNN80U63D56CMMB8DV929UZT22177EAZ</sessionId>  
+<command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+<userId>admin</userId>  
+</command>
+</BroadsoftDocument>'
+reply: '<?xml version="1.0" encoding="ISO-8859-1"?>\n'

@@ -1,0 +1,167 @@
+
+
+        Connection completed for connection unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208
+
+2016.12.22 15:16:05:502 GMT | FieldDebug | Generic
+
+        Decoding message using ISO-8859-1
+
+2016.12.22 15:16:05:502 GMT | Info       | OpenClientServer
+
+        Received message from client on unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208
+
+2016.12.22 15:16:05:502 GMT | Info       | OpenClientServer
+
+        Received message from client on unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sessionId xmlns="">dFjAlfnPS</sessionId>
+  <command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <userId>admin</userId>
+  </command>
+</BroadsoftDocument>
+
+
+
+2016.12.22 15:16:05:512 GMT | Info       | OpenClientServer
+
+        Sending OCI message to server using connection Connection 2 | Protocol AS OCI (6) on unsecure socket 8 | Host:Port 10.144.134.4:2220/10.144.134.4
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sessionId xmlns="">dFjAlfnPS</sessionId>
+  <command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <userId>admin</userId>
+  </command>
+</BroadsoftDocument>
+
+
+2016.12.22 15:16:05:515 GMT | Info       | OpenClientServer
+
+        Sending OCI message to client using connection unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId xmlns="">dFjAlfnPS</sessionId>
+<command echo="" xsi:type="AuthenticationResponse" xmlns="">
+<userId>admin</userId>
+<nonce>1482419765514</nonce>
+<passwordAlgorithm>MD5</passwordAlgorithm>
+</command></BroadsoftDocument>
+
+
+2016.12.22 15:16:05:565 GMT | Info       | OpenClientServer
+
+        Received message from client on unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sessionId xmlns="">dFjAlfnPS</sessionId>
+  <command xsi:type="LoginRequest14sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <userId>admin</userId>
+    <signedPassword>a634b3d4eb299a90eec1f1b7a6cd4243</signedPassword>
+  </command>
+</BroadsoftDocument>
+
+
+2016.12.22 15:16:05:565 GMT | Info       | OpenClientServer
+
+        Sending OCI message to server using connection Connection 2 | Protocol AS OCI (6) on unsecure socket 8 | Host:Port 10.144.134.4:2220/10.144.134.4
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sessionId xmlns="">dFjAlfnPS</sessionId>
+  <command xsi:type="LoginRequest14sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <userId>admin</userId>
+    <signedPassword>a634b3d4eb299a90eec1f1b7a6cd4243</signedPassword>
+  </command>
+</BroadsoftDocument>
+
+
+2016.12.22 15:16:05:571 GMT | Info       | OpenClientServer
+
+        OCI User admin logged in.
+
+2016.12.22 15:16:05:571 GMT | Info       | OpenClientServer
+
+        Sending OCI message to client using connection unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId xmlns="">dFjAlfnPS</sessionId>
+<command echo="" xsi:type="LoginResponse14sp4" xmlns="">
+<loginType>System</loginType>
+<locale>en_IE</locale>
+<encoding>ISO-8859-1</encoding>
+<isEnterprise>false</isEnterprise>
+<passwordExpiresDays>2147483647</passwordExpiresDays>
+<userDomain>web.ngv.eircom.net</userDomain>
+</command>
+</BroadsoftDocument>
+
+2016.12.22 15:16:05:618 GMT | Info       | OpenClientServer
+
+        Received message from client on unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sessionId xmlns="">dFjAlfnPS</sessionId>
+  <command xsi:type="UserAddRequest17sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <serviceProviderId>enterprise</serviceProviderId>
+    <groupId>group</groupId>
+    <userId>marc@voip.broad.com</userId>
+    <lastName>last</lastName>
+    <firstName>first</firstName>
+    <callingLineIdLastName>last</callingLineIdLastName>
+    <callingLineIdFirstName>first</callingLineIdFirstName>
+    <password>*******</password>
+    <language>Russian</language>
+    <timeZone>Europe/Moscow</timeZone>
+    <address/>
+  </command>
+</BroadsoftDocument>
+
+
+2016.12.22 15:16:05:618 GMT | Info       | OpenClientServer
+
+        Sending OCI message to server using connection Connection 2 | Protocol AS OCI (6) on unsecure socket 8 | Host:Port 10.144.134.4:2220/10.144.134.4
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <userId xmlns="">admin</userId>
+  <command xsi:type="UserAddRequest17sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <serviceProviderId>enterprise</serviceProviderId>
+    <groupId>group</groupId>
+    <userId>marc@voip.broad.com</userId>
+    <lastName>last</lastName>
+    <firstName>first</firstName>
+    <callingLineIdLastName>last</callingLineIdLastName>
+    <callingLineIdFirstName>first</callingLineIdFirstName>
+    <password>*******</password>
+    <language>Russian</language>
+    <timeZone>Europe/Moscow</timeZone>
+    <address/>
+  </command>
+</BroadsoftDocument>
+
+
+2016.12.22 15:16:05:622 GMT | Info       | OpenClientServer
+
+        Sending OCI message to client using connection unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sessionId xmlns="">dFjAlfnPS</sessionId>
+<command type="Error" echo="" xsi:type="c:ErrorResponse" xmlns:c="C" xmlns="">
+<summary>[Error 4152] Group not found: enterprise:group</summary>
+<summaryEnglish>[Error 4152] Group not found: enterprise:group</summaryEnglish>
+</command>
+</BroadsoftDocument>
+
+2016.12.22 15:16:05:631 GMT | Info       | OpenClientServer
+
+        Sending OCI message to server using connection Connection 2 | Protocol AS OCI (6) on unsecure socket 8 | Host:Port 10.144.134.4:2220/10.144.134.4
+<?xml version="1.0" encoding="UTF-8"?>
+<BroadsoftDocument xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" protocol="OCI">
+<sessionId xmlns="">dFjAlfnPS</sessionId>
+<command xmlns="" xsi:type="LogoutRequest">
+<userId>admin</userId>
+<reason>Server Connection Failure</reason>
+</command>
+</BroadsoftDocument>
+
+
+        Open Client Server closed connection unsecure socket 500 | Host:Port 10.144.130.214:34590/10.144.130.214 | Local Port 2208
+

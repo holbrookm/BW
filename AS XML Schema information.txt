@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <sessionId xmlns="">6907864BCFEEBCB98A6BB46EF07250DE</sessionId>
+ <command xsi:type="ExternalAuthenticationAuthorizeTokenRequest"
+xmlns="">
+ <userId>dude</userId>
+ <password>qwe56qy</password>
+ <loginToken>wrtenlnl7689knlnljbj</loginToken>
+ </command>
+</BroadsoftDocument>
+
+

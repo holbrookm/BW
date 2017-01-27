@@ -1,0 +1,43 @@
+Details for BW Based Python Scripts:
+================================================
+OCI-P: Open Client Interface - Provisioning		:Used for provisioning
+OCI-R: Open Client Interface - Replication		:Used for replicating Provisioning information to other systems
+XSI  : Xtended Services Interface 				:Used for End User information flow. As in handset retrieving contacts etc
+													Designed for REST interfaces
+XSP: Xtended Srrvices Platform
+OCS: Open Client Server - Process running on XSP
+													
+BW-AS-LAB: 10.144.134.4  bwadmin/bwadmin
+
+Section of /etc/hosts file from BW AS in LAB:
+---------------------------------------------------
+10.144.134.4    lab-bs-as-01.ngv.eircom.net     lab-bs-as-01
+10.144.134.6    lab-bs-as-02.ngv.eircom.net     lab-bs-as-02
+10.144.134.8    lab-bs-ns-01.ngv.eircom.net     lab-bs-ns-01
+10.144.134.10   lab-bs-ns-02.ngv.eircom.net     lab-bs-ns-02
+10.144.134.12   lab-bs-ps-01.ngv.eircom.net     lab-bs-ps-01
+10.144.134.14   lab-bs-ps-02.ngv.eircom.net     lab-bs-ps-02
+10.144.134.132  lab-bs-ms-01.ngv.eircom.net     lab-bs-ms-01
+10.144.134.134  lab-bs-ms-02.ngv.eircom.net     lab-bs-ms-02
+10.144.134.198  lab-bs-xsp-ip-01.ngv.eircom.net lab-bs-xsp-ip-01        loghost
+10.144.134.200  lab-bs-xsp-wa-01.ngv.eircom.net lab-bs-xsp-wa-01
+10.144.134.199  lab-bs-xsp-dm-01.ngv.eircom.net lab-bs-xsp-dm-01
+10.144.134.16   lab-bs-ems-01.ngv.eircom.net    lab-bs-ems-01
+
+# DMZ / Access
+10.144.131.5    lab-bs-xsp-wa-01-dmz.ngv.eircom.net     lab-bs-xsp-wa-01-dmz
+10.144.131.4    lab-bs-xsp-dm-01-dmz.ngv.eircom.net     lab-bs-xsp-dm-01-dmz
+
+
+From bwcli on xsp-ip-01 (10.144.134.198):
+----------------------------------------------------
+XSP_CLI/Applications/OCIOverSoap/OCSConnectivity> get
+  host = localhost (10.144.134.198)
+  port = 2208
+  maxNumberOfOCIPConnections = 2
+  maxNumberOfCAPConnections = 2
+  retryInitializationIntervalInSeconds = 60
+  waitTimeoutIntervalInSeconds = 120
+
+  
+  

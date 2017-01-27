@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <soapenv:Body>
+        <processOCIMessage soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+            <arg0 xsi:type="soapenc:string" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sessionId xmlns="">{0}</sessionId>

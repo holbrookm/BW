@@ -1,0 +1,209 @@
+#!/usr/bin/python
+
+""" This script will access the EMA via http commands with SOAP XML content.
+    This will test Ivica's xml for vobb.
+    # 0851742253
+    # <mholbrook@eircom.ie>
+"""
+
+from __future__ import print_function
+import sys
+sys.path.insert(0, '/root/Dropbox/PYTHON/Marc/ACTIVE/BWWORK')  # Insert your base path here for libraries
+import requests
+import httplib2
+import urllib2
+import httplib
+import string
+import commands
+import subprocess
+from requests.auth import HTTPBasicAuth
+import time
+import sessionid
+import ocip_functions as ocip
+import mysockets as socket
+import sys
+import hashlib
+import re
+
+ocip_username = 'admin'
+ocip_password = 'admin'
+
+#xsp_host = '10.147.21.198'  # Live Node
+xsp_host = '10.144.134.198'   # Test Plant
+ocip_port = '2208'
+_sessionid = ''
+
+
+def getSignedPW(nonce, pword):
+        '''
+        '''
+        pw =  hashlib.sha1()
+        pw.update(pword)
+        sha1pw = pw.hexdigest()
+        spw = hashlib.md5()
+        spw.update("%s:%s" %(nonce, sha1pw))
+        return spw.hexdigest()
+      
+ 
+def recv_timeout(the_socket,timeout=2):
+    #make socket non blocking
+    the_socket.setblocking(0)     
+    #total data partwise in an array
+    total_data=[];
+    data='';
+    #beginning time
+    begin=time.time()
+    while 1:
+        #if you got some data, then break after timeout
+        if total_data and time.time()-begin > timeout:
+            break
+         
+        #if you got no data at all, wait a little longer, twice the timeout
+        elif time.time()-begin > timeout*2:
+            break
+         
+        #recv something
+        try:
+            data = the_socket.recv(64)
+            if data:
+                total_data.append(data)
+                #change the beginning time for measurement
+                begin=time.time()
+            else:
+                #sleep for sometime to indicate a gap
+                time.sleep(0.1)
+        except:
+            pass
+     
+    #join all parts to make final string
+    return ''.join(total_data)
+ 
+def make_payload():
+    '''
+    '''
+    _sessionid = sessionid.id_generator(32)    
+    head = (ocip.ocip_head(_sessionid))
+    tail = (ocip.ocip_bottom())
+    command = (ocip.ocip_authentication(ocip_username))
+    xml = head + command + tail
+    encoded_body = xml.replace("\n", "")
+    return encoded_body, _sessionid
+
+
+def check_connection():
+    '''
+    '''
+    commandstring = ('timeout -s INT 5 bash -c "exec 3<>/dev/tcp/{0}/{1}";'.format(xsp_host, ocip_port))
+    if(subprocess.call(commandstring, shell = True)) != 0:
+        print(" Error connecting with OCI-P")
+        subprocess.call('exec 3>&-;')
+        sys.exit()
+    print('Connection to OCI-P verified.')        
+    return
+
+
+def bash_connect():
+    '''
+    '''
+    payload = make_payload()
+    print('Opening File ')
+    f = open('./temp.xml.tmpl', 'w')
+    f.write(payload)
+    f.close()
+    subprocess.call("marc.sh", shell = True)
+    return
+
+
+def sendreceive(_socket, cmd):
+    '''
+    '''
+    try:
+        print('Sending in command now!!!')
+        _socket.sendall(cmd)
+    except socket.error:
+    #Send failed
+        print ('Send failed')
+        sys.exit()
+    print ('Message send successfully') 
+    try:
+        response = recv_timeout(_socket).strip()
+        print (response)
+    except:
+        #Receive failed
+        print ('Receive failed')
+        sys.exit()
+    return response
+
+
+def main():
+    """
+        Testing
+    """
+    
+    try:
+        print ('Starting Stage 1 My Sockets')
+        #payload, _sessionid = make_payload()
+        _sessionid = sessionid.id_generator(32)
+        payload = ocip.ocip_login(_sessionid)
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        except socket.error:
+            print ('Failed to create socket')
+            sys.exit()
+     
+        print ('Socket Created')
+        
+        try :
+        #Set the whole string
+            s.connect((xsp_host, 2208))
+            print ('Socket Connected to ' + xsp_host + ' on port ' + ocip_port)
+            s.sendall(payload)
+        except socket.error:
+            #Send failed
+            print ('Send failed')
+            sys.exit()
+     
+        print ('Message send successfully')
+        
+        s.setblocking(0) #  Set socket as not blocking
+        response = recv_timeout(s).strip()
+        print (response)
+        print(response.__len__())
+        if endmesg == (response[-20:]):
+            print('YES')
+            try:
+                _nonce = re.search('<nonce>(.*?)</nonce>', response)
+                nonce = _nonce.group(1)
+                print('Nonce is :  ', nonce)
+            except:
+                print ('Issue with re.search')
+                sys.exit()
+
+            signedPW = getSignedPW( nonce, ocip_password)
+            print ('Signed Passwaord is :  ', signedPW)
+            payload = ocip.ocip_auth_response(_sessionid, signedPW)
+            print (payload)
+            print ('Trying to send auth response:')
+            
+
+            result = sendreceive(s, payload)
+                
+            userlist = ocip.ocip_user_get_list_in_system(_sessionid, '766875')
+            print('Trying to send in userlist')
+            result = sendreceive(s, userlist)
+            
+            result = sendreceive(s, ocip.ocip_logout(_sessionid))
+            
+        s.close()
+
+    except:
+        print ('MySockets crap; Try Logout')
+        result = sendreceive (s, ocip.ocip_logout(_sessionid))   
+        if (s):
+            s.close()
+    
+
+if __name__ == "__main__":
+#    print ('Start')
+    main() 
+
