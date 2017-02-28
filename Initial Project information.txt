@@ -1,3 +1,25 @@
+This service is run from JAINSLEE. 
+Modify the mysockets.py to alternate between LAB or LIVE.
+==============================================================================================
+
+To view BW commands as they are input via the BW GUI AS :
+	Go to /var/broadworks/logs/appserver
+		ls -rtal
+		Get latest PSLog file: as in PSLog2017.xx.xx-xx-.....txt
+
+		This should hold all commands input via the web gui in the XML format.
+
+
+To view command input via SOAP interface (OCI-P):
+	Go to BW XSP IP (Lab = 10.144.134.198 )
+	/var/broadworks/logs/openclientserver
+	ls -rtal 
+	Choose latest OCSLogyyyy.mm.dd........txt file to show XML commands
+
+The python script initially changes NCOS in bulk. 
+Future:To add: Passwords 
+
+
 Details for BW Based Python Scripts:
 ================================================
 OCI-P: Open Client Interface - Provisioning		:Used for provisioning
@@ -38,6 +60,8 @@ XSP_CLI/Applications/OCIOverSoap/OCSConnectivity> get
   maxNumberOfCAPConnections = 2
   retryInitializationIntervalInSeconds = 60
   waitTimeoutIntervalInSeconds = 120
+
+
 
   
   

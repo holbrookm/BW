@@ -6,6 +6,8 @@
     # 0851742253
     # <mholbrook@eircom.ie>
     13/1/2017 :- Initial Draft.
+    23/2/2017 :- Added isLiveNetwork method.
+    
 """
 
 from __future__ import print_function
@@ -23,13 +25,9 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 
-sys.path.insert(0, '/root/Dropbox/PYTHON/Marc/ACTIVE/BWWORK')  # Insert your base path here for libraries
+sys.path.insert(0, '/root/Dropbox/PYTHON/Marc/ACTIVE/BW')  # Insert your base path here for libraries
 logger = logging_config.logger
 
-
-xsp_host ='10.144.70.198'   #Live Node SRL BW XSP-WA
-#xsp_host = '10.144.134.198'   # Test Plant
-ocip_port = 2208  
 
 class BWconnect(object):
       
@@ -38,6 +36,8 @@ class BWconnect(object):
              This class creates an instance of a socket connection to BW. 
              The class includes Authentication and closing/Logout.
         """
+              
+        
         def connect_socket():
             '''
               Create socket and connect to host/port listed above
@@ -45,33 +45,44 @@ class BWconnect(object):
             logger.debug(" FUNC: mysockets.connect_socket()       : ")
             try:
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                s.connect((xsp_host, ocip_port)) # Connect to Target System
+                s.connect((self.xsp_host, self.ocip_port)) # Connect to Target System
                 s.setblocking(0) #  Set socket as not blocking
             except socket.error as e:
                 logger.error(str('Failed to create socket:  ' + e))
                 sys.exit()     
-            logger.debug(str('Socket Connected to ' + xsp_host + ' on port ' + str(ocip_port)))
+            logger.debug(str('Socket Connected to ' + self.xsp_host + ' on port ' + str(self.ocip_port)))
             
             logger.debug(" EXIT: mysockets.connect_socket()       : ")
             return s  #return socket
 
 
         logger.debug(" FUNC: mysockets.__init__(self)       : ")
+        
+        #self.xsp_host ='10.144.70.198'   #Live Node SRL BW XSP-WA
+        self.xsp_host = '10.144.134.198'   # Test Plant
+        #self.live = True
+        self.live = False
+        self.ocip_port = 2208
         self.sessionid = sessionid.id_generator(32)
         self.nonce = ''
         self.sha1pw = ''
         self.pw =''
         self.s = connect_socket()
         self.hexdigest =''
+        
         logger.debug(" EXIT: mysockets.__init__(self)       : ")
         return
-
+        
+    def isLiveNetwork(self):
+        return self.live
+        
+        
     def getSignedPW(self, pword):
         '''
             Take password and nonce and return signedPassword to authenticate with BW.
         '''
         logger.debug(" FUNC: mysockets.getSignedPW(self)       : ")
-     
+ 
         self.pw =  hashlib.sha1()
         self.pw.update(pword)
         self.sha1pw = self.pw.hexdigest()
