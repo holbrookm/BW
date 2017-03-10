@@ -7,6 +7,9 @@
 
     Modified 15-9-16: Added Get DNS Function
     Modified 20-02-17: Added: ocip_modify_user_outgoing_calling_plan(session, userid)
+    Modified 03-03-2017: Added SystemNetworkClassOfServiceGetAssignedServiceProviderListRequest
+    Modified 03-03-2017: Added SystemNetworkClassOfServiceGetListRequest
+    
     
 """
 
@@ -102,6 +105,43 @@ def ocip_auth_response(_sessionid, signedPW):
         logger.debug(" EXIT: ocip_function.ocip_auth_response(session, signedPW)       :  ")
         return encoded_body
 
+        
+
+def SystemNetworkClassOfServiceGetListRequest(session):
+    '''
+        Retrieve Systems list of NCOS options.
+    '''
+    logger.debug(" FUNC: ocip_function.SystemNetworkClassOfServiceGetListRequest(session)       : ")
+    head = ocip_head(session)
+    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/SystemNetworkClassOfServiceGetListRequest.xml.tmpl')
+    tail = ocip_bottom()
+
+    insert_xml = head + command + tail
+    encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
+    logger.debug(encoded_body)
+    logger.debug(" EXIT: ocip_function.SystemNetworkClassOfServiceGetListRequest(session)       : ")
+    
+    return (encoded_body) 
+        
+
+def SystemNetworkClassOfServiceGetAssignedServiceProviderListRequest(session, ncos):
+    '''
+        Retrieve Systems list of NCOS options.
+    '''
+    logger.debug(" FUNC: ocip_function.SystemNetworkClassOfServiceGetAssignedServiceProviderListRequest(session, ncos)       : ")
+    head = ocip_head(session)
+    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/SystemNetworkClassOfServiceGetAssignedServiceProviderListRequest.xml.tmpl').format(ncos)
+    tail = ocip_bottom()
+
+    insert_xml = head + command + tail
+    encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
+    logger.debug(encoded_body)
+    logger.debug(" EXIT: ocip_function.SystemNetworkClassOfServiceGetAssignedServiceProviderListRequest(session, ncos)       : ")
+    
+    return (encoded_body) 
+        
 
 def UserGetListInSystemRequest(session, search):
     '''
@@ -113,24 +153,26 @@ def UserGetListInSystemRequest(session, search):
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.UserGetListInSystemRequest(session, search)       : ")
     
     return (encoded_body) 
 
 
-def ocip_user_get(session, search):
+def UserGetRequest21(session, search):
     '''
     '''
-    logger.debug(" FUNC: ocip_function.ocip_user_get(session, search)       : ")
+    logger.debug(" FUNC: ocip_function.UserGetRequest21(session, search)       : ")
     head = ocip_head(session)
-    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/getuser.xml.tmpl').format(search)
+    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/UserGetRequest21.xml.tmpl').format(search)
     tail = ocip_bottom()
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
-    logger.debug(" EXIT: ocip_function.ocip_user_get(session, search)       : ")
+    logger.debug(" EXIT: ocip_function.UserGetRequest21(session, search)       : ")
     
     return (encoded_body) 
 
@@ -145,6 +187,7 @@ def ocip_get_number_contains_from_system_list(session, number):
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.ocip_get_number_contains_from_system_list(session, number)       : ")
     
@@ -161,6 +204,7 @@ def ocip_user_modify(session, search):
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;') # Add in BW specific char coding
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.ocip_user_modify(session, search)       : ")
     
@@ -176,6 +220,7 @@ def ocip_modify_user_ncos(session, userid, ncos):
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.ocip_modify_user_ncos(session, userid, search)       : ")
     
@@ -192,6 +237,7 @@ def GroupNetworkClassOfServiceGetAssignedListRequest(session, enterprise, group)
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.GroupNetworkClassOfServiceGetAssignedListRequest(session, enterprise, group       : ")
     
@@ -208,6 +254,7 @@ def ServiceProviderNetworkClassOfServiceGetAssignedListRequest(session, enterpri
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.ServiceProviderNetworkClassOfServiceGetAssignedListRequest(session, enterprise       : ")
     
@@ -227,6 +274,7 @@ def ocip_modify_user_outgoing_calling_plan(session, userid):
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.ocip_modify_user_outgoing_calling_plan(session, userid)      : ")
     
@@ -243,6 +291,7 @@ def ocip_modify_dynamic(session, command):
 
     insert_xml = head + command + tail
     encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
     logger.debug(encoded_body)
     logger.debug(" EXIT: ocip_function.ocip_modify_dynamic(session, search)       : ")
     

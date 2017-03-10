@@ -16,57 +16,34 @@ import string
 import ocip_functions as ocip
 import mysockets
 import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 import csv
+import os
+import logging_config
+from time import sleep
+import scriptio as sio
 
 try:
-    import xml.etree.cElementTree as ET   # Library for XML Parsing
+    import xml.etree.cElementTree as ET
 except ImportError:
     import xml.etree.ElementTree as ET
-    
 
+    
+logger = logging_config.logger
 _sessionid = ''
 
 #CheckOnly = True    # Check BW only, do not modify.
 CheckOnly = False  # Modify BW
 
-UserGetListInSystemRequestPath = './UserGetListInSystemRequest.csv'
 
-barring_category = 'PRS BARRED'
-#barring_category = 'Incoming Service Barred'
-        
-def csv_writer(data, path):
-    """
-    Write data to a CSV file path
-    """
-    with open(path, "wb") as csv_file:
-        writer = csv.writer(csv_file, delimiter=',')
-        for line in data:
-            writer.writerow(line)
-    return
+NCOSList = []
+#barring_category = 'PRS BARRED'
+#barring_category = ''
 
-def csv_reader_column(file_obj, col_number):
-    """
-    Read a single column from a csv file
-    """
-    data = []
-    with open(file_obj, 'r') as csv_file:
-        reader = csv.reader(csv_file)
-        reader.next() #Move to second line, skip header titles
-        for row in reader:
-            data.append(row[col_number])
-    return data
 
-def check_result(result):
-    '''
-        Make sure that command response conatins the success tag.
-    '''
-    tree = ET.fromstring(result)
-    result = False
-    for b in tree.iter():
-        if b.tag == 'command' and b.attrib.values()[0] == 'c:SuccessResponse':
-            result = True # Successful command
-    return result
 
+    
 
 def get_user_choice():
     '''
@@ -78,53 +55,58 @@ def get_user_choice():
         sys.exit()
     return userChoice
 
-def send_UserGetListInSystemResponse_to_file(xml, filename):
+
+    
+def selectncos(l):
     '''
+        Select the Chosen NCOS for the input list.
+        List input is Name, Description.
     '''
-    #Local vars
-    datalist = []
-    rowlist = []
-    exit_code = False
-    #Unpack XML response
-    tree = ET.fromstring(xml)
+    d = {} # temp dict
+    l.pop(0) # remove Headings
+    for num, elem in enumerate(l):
+        d[num] = elem[0] # Take first Column only
         
-    #Parse details and print in csv file
-    try:
-        for elem in tree.iter():
-            if(elem.tag == 'colHeading'):
-                rowlist.append(elem.text)
-            elif (elem.tag == 'row'):
-                datalist.append(rowlist)
-                rowlist = []
-            elif (elem.tag == 'col'):
-                rowlist.append(elem.text)
-            else:
-                pass
-        datalist.append(rowlist)
-        csv_writer(datalist, filename)  # Write data to CSV file
-        exit_code = True
-        
-    except IOError as e:
-        print (e)
-        
-    return exit_code
+    print ('Please choose the NCOS of interest for you search from the list below:  ')
+    l1 = d.keys()
+    l1.sort()
+    for key in l1:
+        print (str(key) + '  :  ' + d[key])
+    while True:
+        recipient = int(raw_input('Enter your choice :  '))
+        if recipient in d.keys():
+            break
+        else:
+            print ('\nPlease enter only a number indicating an NCOS choice above. ')
+    
+    return (d[recipient])
+    
+    
+
+
     
 def main():
     """
         This service will run a CLI BW Range Network Class of Service modification script.
         
     """ 
+    
+    
+    sio.cleanse_files()
+    
     LOGGEDIN = False
     data = []
     row = []
     modified_subs_list = []
+    failed_subs_list = []
+    barring_category = ''
+    
     print('\n\nThe Check ONLY option is set to : ', + CheckOnly)
 
     userChoice = get_user_choice() #get input range
 
     while True:
-        print ('Please confirm that you want to search for numbers containing: {0}. y/n'.format(userChoice))
-        yn = str(raw_input('\n y or n?'))
+        yn = str(raw_input('Please confirm that you want to search for numbers containing: {0}.\t\t [y/n]'.format(userChoice)))
         if yn == 'y':
             break
         elif yn == 'n':
@@ -140,9 +122,9 @@ def main():
     conn = mysockets.BWconnect()
     if (conn.isLiveNetwork()):
         print('Connecting to Live Broadworks Platform \n')
+        
         while True:
-            print ('Please confirm that you want to peform Live Network Actions: [y/n]')
-            yn = str(raw_input('\n y or n?'))
+            yn = str(raw_input('Please confirm that you want to peform Live Network Actions: [y/n]'))
             if yn == 'y':
                 break
             elif yn == 'n':
@@ -154,67 +136,115 @@ def main():
             
     if (conn.bwlogin()):
         LOGGEDIN = True
+        d = {}
+        SystemNcosList = conn.get_system_ncos_options() #Get the complete System NCOS Listing. Returns Name and Description
+        barring_category = selectncos(SystemNcosList)
+        
+        '''
+        #Not needed for this program but good to have :)
+        # retrieve all the enterprises with the chosen NCOS
+        EnterpriseList= conn.get_service_providers_with_chosen_ncos(barring_category) # returns list of : (Service Provider Id, Service Provider Name, Is Enterprise)
+        EnterpriseList.pop(0)# Remove Headers
+                
+        print ('The following Enterprises have the chosen NCOS assigned: [Service Provider Id : Service Provider Name     \n')
+        for number, elem in enumerate(EnterpriseList):
+            print (str(number) + '  :  ' + str(elem[0]) +  '  :  ' + str(elem[1]))
+        
+        '''
+        
     else:
         print ('Failure to Log in : Please check with administrator.')
         sys.exit()
-
+    
+    # Get all 
     # Connected: Now take user input and search for subscription in BW.
     if (LOGGEDIN):
-        print('Trying to send in userlist')
-        userlist = ocip.UserGetListInSystemRequest(conn.sessionid, userChoice) # Create input XML
-        result = conn.sendreceive(userlist)    #Retrieve subscription information using UserGetListinSystem command
-        if (send_UserGetListInSystemResponse_to_file(result, UserGetListInSystemRequestPath)):
+        print('\n\nTrying to send in userlist')
         
-            '''
-        tree = ET.fromstring(result)
+        xml = ocip.UserGetListInSystemRequest(conn.sessionid, userChoice) # Create input XML
+        result = conn.sendreceive(xml)    #Retrieve subscription information using UserGetListinSystem command
+        result, UserList = sio.send_ColumnRowResponse_to_file(result, sio.UserGetListInSystemRequestPath)
+        UserList.pop(0) # Remove Headers from List
         
-        #Parse details and print in csv file
-        for elem in tree.iter():
-            if(elem.tag == 'colHeading'):
-                row.append(elem.text)
-            elif (elem.tag == 'row'):
-                data.append(row)
-                row = []
-            elif (elem.tag == 'col'):
-                row.append(elem.text)
-            else:
-                pass
-        data.append(row)
-        csv_writer(data,path)  # Write data to CSV file
-            '''
-        
-        
-            returned_list = csv_reader_column(UserGetListInSystemRequestPath, 0) #Read particular column from CSV file to list
-            print ('There are {0} user subscriptions to be modified. '.format(returned_list.__len__()))
-            print (returned_list)
+        if result:
+            print ('There are {0} user subscriptions to be modified. '.format(UserList.__len__()))
+            print (UserList)
             
         # Now get individual user info using UserGetResponse21 command        
         # For every user, check NCOS and change it.
-        if returned_list:
-            for userid in returned_list: 
-                userlist = ocip.ocip_user_get(conn.sessionid, userid)
-                result = conn.sendreceive(userlist)
-
-                #Start Modifying NCOS 
-                tree = ET.fromstring(result)
-                if not (CheckOnly): # Flag is set at top of this file to perform Check. Set to Modify!
-                    for branch in tree.iter():
-                        if branch.tag == 'networkClassOfService': #Check for incorrect NCOS
-                            #command = ocip.ocip_modify_user_ncos(conn.sessionid, userid, 'Outgoing Service Barred')
-                            command = ocip.ocip_modify_user_ncos(conn.sessionid, userid, barring_category)
-                            #command = ocip.ocip_modify_user_ncos(conn.sessionid, userid, 'Incoming Service Barred')
-                            result = conn.sendreceive(command)            
-                            if (check_result(result)): # Check for positive result: Success Response from BW
-                                modified_subs_list.append(userid)
-                            pass
-
-                else: # Check Only: Therefore just print out existing NCOS
-                    for branch in tree.iter():
-                        if branch.tag == 'networkClassOfService': #Check for incorrect NCOS
-                            print(userid , branch.text)
-
+        if UserList:
+            for line in UserList: 
+                userid = line[0]
+                xml = ocip.UserGetRequest21(conn.sessionid, userid) # Take first element from list
+                result = conn.sendreceive(xml)
+                if not(mysockets.check_get_response(result)):
+                    logger.error('Error: userlist = ocip.UserGetRequest21(conn.sessionid, userid) Failure')
+                else:
+                    #Start Modifying NCOS 
+                    tree = ET.fromstring(result)
+                    if not (CheckOnly): # Flag is set at top of this file to perform Check. Set to Modify!
+                        for branch in tree.iter():
+                            #Set useful parameters for later use.
+                            if branch.tag == 'serviceProviderId':
+                                ServiceProvider = branch.text
+                            elif branch.tag == 'groupId':
+                                GroupId = branch.text
+                            
+                            #NCOS related
+                            elif branch.tag == 'networkClassOfService': #Check for incorrect NCOS
+                                command = ocip.ocip_modify_user_ncos(conn.sessionid, userid, barring_category)
+                                result = conn.sendreceive(command)            
+                                                                
+                                if (mysockets.check_modify_result(result)): # Check for positive result: Success Response from BW
+                                    modified_subs_list.append(userid)
+                                else:
+                                    sub_tuple = (userid, ServiceProvider, GroupId)
+                                    failed_subs_list.append(sub_tuple)
+                            else:
+                                pass
+                    else: # Check Only: Therefore just print out existing NCOS
+                        for branch in tree.iter():
+                            if branch.tag == 'networkClassOfService': #Check for incorrect NCOS
+                                print(userid , branch.text)
+    #Check if any subs failed 
+    if failed_subs_list: # Failed list made up of (userid, ServiceProvider, GroupId)
+        for sub in failed_subs_list:
+            _userid,_ServiceProvider, _GroupId = sub[0], sub[1], sub[2]
+            command = ocip.ServiceProviderNetworkClassOfServiceGetAssignedListRequest(conn.sessionid, _ServiceProvider) # Get list of NCOS assigned to the failed sub Service Provider
+            result = conn.sendreceive(command) 
+            response, ServiceProviderNcosList = sio.send_ColumnRowResponse_to_file(result, sio.ServiceProviderNetworkClassOfServiceGetAssignedListRequestPath) #Write response to file
+            ServiceProviderNcosList.pop(0) # remove headers
+            #result will be in the format ['Name', 'Description', 'Default']
+            found = False #temp var
+            for elem in ServiceProviderNcosList:
+                if barring_category in elem[0]:
+                    print('Barring category available to the subscription Service provider.')
+                    found = True
+            if not found:
+                print(str('Barring category not in Service Provider {0} assigned listing. This must be added.').format(_ServiceProvider))
+                print ('Add Barring function')
+                    
+                      
+            command = ocip.GroupNetworkClassOfServiceGetAssignedListRequest(conn.sessionid, _ServiceProvider, _GroupId) # Get list of NCOS assigned to the failed subs Trunk Group
+            result = conn.sendreceive(command)
+            response, GroupNcosList = sio.send_ColumnRowResponse_to_file(result, sio.GroupNetworkClassOfServiceGetAssignedListRequestPath) # Write response from BW to CSV file.
+            # Result will be in the format ['Name', 'Description', 'Default']
+            GroupNcosList.pop(0) # remove headers
+            found = False
+            for elem in GroupNcosList:
+                if barring_category in elem[0]:
+                    print ('Barring category is in Group.')
+                    found = True
+            if not found:
+                print(str('Barring category not in Trunk Group {0} assigned listing. This must be added.').format(_GroupId))
+                print ('Add Barring function')
+                
+            
+    
     if (LOGGEDIN): # Make sure to close socket and logout from BW.
-        print ('The modified subs are :    ' + str(modified_subs_list) )
+        for sub in modified_subs_list:
+            ServiceProvider, GroupId, userid, Ncos = conn.get_user_ncos (sub)
+            print (str('The modified subs are :\n   {2} in group {1} in Service Provider {0} with new NCOS {3} ').format(ServiceProvider, GroupId, userid, Ncos)) 
         conn.bwlogout()   
         conn.close()
 

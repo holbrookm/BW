@@ -1,74 +1,76 @@
-2017-02-28 16:25:04,953 DEBUG | mysockets | root |  FUNC: mysockets.__init__(self)       : 
-2017-02-28 16:25:04,954 DEBUG | mysockets | root |  FUNC: mysockets.connect_socket()       : 
-2017-02-28 16:25:04,955 DEBUG | mysockets | root | Socket Connected to 10.144.134.198 on port 2208
-2017-02-28 16:25:04,955 DEBUG | mysockets | root |  EXIT: mysockets.connect_socket()       : 
-2017-02-28 16:25:04,955 DEBUG | mysockets | root |  EXIT: mysockets.__init__(self)       : 
-2017-02-28 16:25:04,956 INFO | mysockets | root |  FUNC: mysockets.bwlogin(self)       : 
-2017-02-28 16:25:04,957 DEBUG | ocip_functions | root |  FUNC: ocip_function.ocipLogin(session)       : 
-2017-02-28 16:25:04,957 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId>  <command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >    <userId>admin</userId>  </command></BroadsoftDocument>
-2017-02-28 16:25:04,957 DEBUG | ocip_functions | root |  EXIT: ocip_function.ocipLogin(session)       : 
-2017-02-28 16:25:04,957 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:04,958 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId>  <command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >    <userId>admin</userId>  </command></BroadsoftDocument>
-2017-02-28 16:25:04,958 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:06,973 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:06,973 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
-<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command echo="" xsi:type="AuthenticationResponse" xmlns=""><userId>admin</userId><nonce>1488299104970</nonce><passwordAlgorithm>MD5</passwordAlgorithm></command></BroadsoftDocument>
-2017-02-28 16:25:06,973 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:06,973 DEBUG | mysockets | root | Nonce is :  1488299104970
-2017-02-28 16:25:06,973 DEBUG | mysockets | root |  FUNC: mysockets.getSignedPW(self)       : 
-2017-02-28 16:25:06,973 DEBUG | mysockets | root | 1488299104970:d033e22ae348aeb5660fc2140aec35850c4da997
-2017-02-28 16:25:06,974 DEBUG | mysockets | root |  EXIT: mysockets.getSignedPW(self)       : 
-2017-02-28 16:25:06,974 DEBUG | mysockets | root | Signed Password is :  eccc353d25129b59ba025b4a5bf59f6c
-2017-02-28 16:25:06,974 DEBUG | ocip_functions | root |  FUNC: ocip_function.ocip_auth_response(session, signedPW)       :  
-2017-02-28 16:25:06,974 DEBUG | ocip_functions | root |  EXIT: ocip_function.ocip_auth_response(session, signedPW)       :  
-2017-02-28 16:25:06,975 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:06,975 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId>  <command xsi:type="LoginRequest14sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <userId>admin</userId>    <signedPassword>eccc353d25129b59ba025b4a5bf59f6c</signedPassword>  </command></BroadsoftDocument>
-2017-02-28 16:25:06,975 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:08,983 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:08,984 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
-<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command echo="" xsi:type="LoginResponse14sp4" xmlns=""><loginType>System</loginType><locale>en_IE</locale><encoding>ISO-8859-1</encoding><isEnterprise>false</isEnterprise><passwordExpiresDays>2147483647</passwordExpiresDays><userDomain>web.ngv.eircom.net</userDomain></command></BroadsoftDocument>
-2017-02-28 16:25:08,985 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:08,985 INFO | mysockets | root |  EXIT: mysockets.bwlogin(self)       : 
-2017-02-28 16:25:08,985 DEBUG | ocip_functions | root |  FUNC: ocip_function.UserGetListInSystemRequest(session, search)       : 
-2017-02-28 16:25:08,987 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command xsi:type="UserGetListInSystemRequest" xmlns="">    <responseSizeLimit>1000</responseSizeLimit>    <searchCriteriaUserId>        <mode>Contains</mode>        <value>35376687526</value>        <isCaseInsensitive>true</isCaseInsensitive>    </searchCriteriaUserId></command></BroadsoftDocument>
-2017-02-28 16:25:08,987 DEBUG | ocip_functions | root |  EXIT: ocip_function.UserGetListInSystemRequest(session, search)       : 
-2017-02-28 16:25:08,987 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:08,987 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command xsi:type="UserGetListInSystemRequest" xmlns="">    <responseSizeLimit>1000</responseSizeLimit>    <searchCriteriaUserId>        <mode>Contains</mode>        <value>35376687526</value>        <isCaseInsensitive>true</isCaseInsensitive>    </searchCriteriaUserId></command></BroadsoftDocument>
-2017-02-28 16:25:08,988 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:11,013 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:11,015 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
-<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command echo="" xsi:type="UserGetListInSystemResponse" xmlns=""><userTable><colHeading>User Id</colHeading><colHeading>Group Id</colHeading><colHeading>Service Provider Id</colHeading><colHeading>Last Name</colHeading><colHeading>First Name</colHeading><colHeading>Department</colHeading><colHeading>Phone Number</colHeading><colHeading>Phone Number Activated</colHeading><colHeading>Email Address</colHeading><colHeading>Hiragana Last Name</colHeading><colHeading>Hiragana First Name</colHeading><colHeading>In Trunk Group</colHeading><colHeading>Extension</colHeading><row><col>+353766875262@ngv.eircom.net</col><col>ent3_group_2</col><col>ent3_notreg@ngv.eircom.net</col><col>Holbrook</col><col>Marc</col><col/><col>+353-766875262</col><col>true</col><col/><col>Holbrook</col><col>Marc</col><col>false</col><col>5262</col></row></userTable></command></BroadsoftDocument>
-2017-02-28 16:25:11,015 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:11,017 DEBUG | ocip_functions | root |  FUNC: ocip_function.ocip_user_get(session, search)       : 
-2017-02-28 16:25:11,017 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command xsi:type="UserGetRequest21" xmlns=""><userId>+353766875262@ngv.eircom.net</userId></command></BroadsoftDocument>
-2017-02-28 16:25:11,018 DEBUG | ocip_functions | root |  EXIT: ocip_function.ocip_user_get(session, search)       : 
-2017-02-28 16:25:11,018 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:11,018 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command xsi:type="UserGetRequest21" xmlns=""><userId>+353766875262@ngv.eircom.net</userId></command></BroadsoftDocument>
-2017-02-28 16:25:11,018 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:13,028 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:13,034 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
-<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command echo="" xsi:type="UserGetResponse21" xmlns=""><serviceProviderId>ent3_notreg@ngv.eircom.net</serviceProviderId><groupId>ent3_group_2</groupId><lastName>Holbrook</lastName><firstName>Marc</firstName><callingLineIdLastName>Holbrook</callingLineIdLastName><callingLineIdFirstName>Marc</callingLineIdFirstName><hiraganaLastName>Holbrook</hiraganaLastName><hiraganaFirstName>Marc</hiraganaFirstName><phoneNumber>0766875262</phoneNumber><extension>5262</extension><language>English</language><timeZone>Eire</timeZone><timeZoneDisplayName>(GMT) Eire</timeZoneDisplayName><defaultAlias>+353766875262@ngv.eircom.net</defaultAlias><accessDeviceEndpoint><accessDevice><deviceLevel>Group</deviceLevel><deviceName>ent3 grp 2</deviceName></accessDevice><linePort>+353766875262@ngv.eircom.net</linePort><staticRegistrationCapable>false</staticRegistrationCapable><useDomain>true</useDomain><supportVisualDeviceManagement>false</supportVisualDeviceManagement></accessDeviceEndpoint><countryCode>353</countryCode><nationalPrefix>0</nationalPrefix><networkClassOfService>Outgoing Service Barred</networkClassOfService></command></BroadsoftDocument>
-2017-02-28 16:25:13,034 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:13,034 DEBUG | ocip_functions | root |  FUNC: ocip_function.ocip_modify_user_ncos(session, userid, search)       : 
-2017-02-28 16:25:13,035 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command xsi:type="UserModifyRequest17sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><userId>+353766875262@ngv.eircom.net</userId><networkClassOfService>PRS BARRED</networkClassOfService></command></BroadsoftDocument>
-2017-02-28 16:25:13,035 DEBUG | ocip_functions | root |  EXIT: ocip_function.ocip_modify_user_ncos(session, userid, search)       : 
-2017-02-28 16:25:13,035 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:13,035 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command xsi:type="UserModifyRequest17sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><userId>+353766875262@ngv.eircom.net</userId><networkClassOfService>PRS BARRED</networkClassOfService></command></BroadsoftDocument>
-2017-02-28 16:25:13,035 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:15,055 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:15,057 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
-<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId><command type="Error" echo="" xsi:type="c:ErrorResponse" xmlns:c="C" xmlns=""><summary>[Error 8492] Communication Barring Network Class of Service PRS BARRED is not assigned to Group: ent3_notreg@ngv.eircom.net:ent3_group_2.</summary><summaryEnglish>[Error 8492] Communication Barring Network Class of Service PRS BARRED is not assigned to Group: ent3_notreg@ngv.eircom.net:ent3_group_2.</summaryEnglish></command></BroadsoftDocument>
-2017-02-28 16:25:15,057 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:15,057 INFO | mysockets | root |  FUNC: mysockets.bwlogout(self)       : 
-2017-02-28 16:25:15,058 DEBUG | ocip_functions | root |  FUNC: ocip_logut   : 
-2017-02-28 16:25:15,059 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId>  <command xsi:type="LogoutRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <userId>admin</userId>  </command></BroadsoftDocument>
-2017-02-28 16:25:15,059 DEBUG | ocip_functions | root |  EXIT: ocip_logut   : 
-2017-02-28 16:25:15,059 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:15,059 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">CGLLIFWZF0OB3A6FHG440L70POMKPI55</sessionId>  <command xsi:type="LogoutRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <userId>admin</userId>  </command></BroadsoftDocument>
-2017-02-28 16:25:15,060 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:19,060 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
-2017-02-28 16:25:19,060 DEBUG | mysockets | root | 
-2017-02-28 16:25:19,060 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
-2017-02-28 16:25:19,060 INFO | mysockets | root |  EXIT: mysockets.bwlogout(self)       : 
-2017-02-28 16:25:19,060 DEBUG | mysockets | root |  FUNC: mysockets.close(self)       : 
-2017-02-28 16:25:19,061 DEBUG | mysockets | root |  EXIT: mysockets.close(self)       : 
+2017-03-10 12:23:42,662 DEBUG | mysockets | root |  FUNC: mysockets.__init__(self)       : 
+2017-03-10 12:23:42,663 DEBUG | mysockets | root |  FUNC: mysockets.connect_socket()       : 
+2017-03-10 12:23:42,664 DEBUG | mysockets | root | Socket Connected to 10.144.134.198 on port 2208
+2017-03-10 12:23:42,664 DEBUG | mysockets | root |  EXIT: mysockets.connect_socket()       : 
+2017-03-10 12:23:42,664 DEBUG | mysockets | root |  EXIT: mysockets.__init__(self)       : 
+2017-03-10 12:23:42,665 INFO | mysockets | root |  FUNC: mysockets.bwlogin(self)       : 
+2017-03-10 12:23:42,665 DEBUG | ocip_functions | root |  FUNC: ocip_function.ocipLogin(session)       : 
+2017-03-10 12:23:42,665 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId>  <command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >    <userId>admin</userId>  </command></BroadsoftDocument>
+2017-03-10 12:23:42,665 DEBUG | ocip_functions | root |  EXIT: ocip_function.ocipLogin(session)       : 
+2017-03-10 12:23:42,666 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:42,666 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId>  <command xsi:type="AuthenticationRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >    <userId>admin</userId>  </command></BroadsoftDocument>
+2017-03-10 12:23:42,666 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:44,681 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:44,682 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command echo="" xsi:type="AuthenticationResponse" xmlns=""><userId>admin</userId><nonce>1489148622677</nonce><passwordAlgorithm>MD5</passwordAlgorithm></command></BroadsoftDocument>
+2017-03-10 12:23:44,682 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:44,683 DEBUG | mysockets | root | Nonce is :  1489148622677
+2017-03-10 12:23:44,683 DEBUG | mysockets | root |  FUNC: mysockets.getSignedPW(self)       : 
+2017-03-10 12:23:44,683 DEBUG | mysockets | root | 1489148622677:d033e22ae348aeb5660fc2140aec35850c4da997
+2017-03-10 12:23:44,684 DEBUG | mysockets | root |  EXIT: mysockets.getSignedPW(self)       : 
+2017-03-10 12:23:44,684 DEBUG | mysockets | root | Signed Password is :  dac4231fccf8168aec57fb287138cef2
+2017-03-10 12:23:44,684 DEBUG | ocip_functions | root |  FUNC: ocip_function.ocip_auth_response(session, signedPW)       :  
+2017-03-10 12:23:44,684 DEBUG | ocip_functions | root |  EXIT: ocip_function.ocip_auth_response(session, signedPW)       :  
+2017-03-10 12:23:44,684 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:44,684 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId>  <command xsi:type="LoginRequest14sp4" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <userId>admin</userId>    <signedPassword>dac4231fccf8168aec57fb287138cef2</signedPassword>  </command></BroadsoftDocument>
+2017-03-10 12:23:44,684 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:46,693 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:46,693 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command echo="" xsi:type="LoginResponse14sp4" xmlns=""><loginType>System</loginType><locale>en_IE</locale><encoding>ISO-8859-1</encoding><isEnterprise>false</isEnterprise><passwordExpiresDays>2147483647</passwordExpiresDays><userDomain>web.ngv.eircom.net</userDomain></command></BroadsoftDocument>
+2017-03-10 12:23:46,693 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:46,694 INFO | mysockets | root |  EXIT: mysockets.bwlogin(self)       : 
+2017-03-10 12:23:46,694 DEBUG | mysockets | root |  FUNC: mysockets.get_system_ncos_options(self)       : 
+2017-03-10 12:23:46,694 DEBUG | ocip_functions | root |  FUNC: ocip_function.SystemNetworkClassOfServiceGetListRequest(session)       : 
+2017-03-10 12:23:46,694 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command xsi:type="SystemNetworkClassOfServiceGetListRequest" xmlns=""></command></BroadsoftDocument>
+2017-03-10 12:23:46,694 DEBUG | ocip_functions | root |  EXIT: ocip_function.SystemNetworkClassOfServiceGetListRequest(session)       : 
+2017-03-10 12:23:46,694 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:46,695 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command xsi:type="SystemNetworkClassOfServiceGetListRequest" xmlns=""></command></BroadsoftDocument>
+2017-03-10 12:23:46,695 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:48,701 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:48,701 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command echo="" xsi:type="SystemNetworkClassOfServiceGetListResponse" xmlns=""><networkClassOfServiceTable><colHeading>Name</colHeading><colHeading>Description</colHeading><row><col>CB-UC-testing</col><col>tom-test-desc</col></row><row><col>Incoming Service Barred</col><col>Incoming Service Barred</col></row><row><col>Mobile &amp; Personal Number Call Barring</col><col>Mobile &amp; Personal Number Call Barring</col></row><row><col>None</col><col>No Barring.</col></row><row><col>Outgoing Service Barred</col><col>Outgoing Service Barred</col></row><row><col>PR, INT, CC, MO &amp; NAT Call Barring</col><col>PR, INT, CC, MO &amp; NAT Call Barring</col></row><row><col>PR, INT, CC, MO &amp; PN Call Barring</col><col>PR, INT, CC, MO &amp; PN Call Barring</col></row><row><col>Premium Rate, INT, Cross Channel</col><col>Premium Rate, International, Cross Channel Call Barring</col></row><row><col>Premium Rate &amp; INT call barring</col><col>Premium Rate &amp; International Call Barring</col></row><row><col>Premium Rate Call Barring</col><col>Premium Rate Call Barring</col></row></networkClassOfServiceTable></command></BroadsoftDocument>
+2017-03-10 12:23:48,701 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:48,702 DEBUG | mysockets | root | EXIT: mysockets.get_system_ncos_options(self)       : 
+2017-03-10 12:23:52,166 DEBUG | ocip_functions | root |  FUNC: ocip_function.UserGetListInSystemRequest(session, search)       : 
+2017-03-10 12:23:52,167 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command xsi:type="UserGetListInSystemRequest" xmlns="">    <responseSizeLimit>1000</responseSizeLimit>    <searchCriteriaUserId>        <mode>Contains</mode>        <value>35361616161</value>        <isCaseInsensitive>true</isCaseInsensitive>    </searchCriteriaUserId></command></BroadsoftDocument>
+2017-03-10 12:23:52,167 DEBUG | ocip_functions | root |  EXIT: ocip_function.UserGetListInSystemRequest(session, search)       : 
+2017-03-10 12:23:52,167 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:52,168 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command xsi:type="UserGetListInSystemRequest" xmlns="">    <responseSizeLimit>1000</responseSizeLimit>    <searchCriteriaUserId>        <mode>Contains</mode>        <value>35361616161</value>        <isCaseInsensitive>true</isCaseInsensitive>    </searchCriteriaUserId></command></BroadsoftDocument>
+2017-03-10 12:23:52,168 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:54,198 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:54,200 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command echo="" xsi:type="UserGetListInSystemResponse" xmlns=""><userTable><colHeading>User Id</colHeading><colHeading>Group Id</colHeading><colHeading>Service Provider Id</colHeading><colHeading>Last Name</colHeading><colHeading>First Name</colHeading><colHeading>Department</colHeading><colHeading>Phone Number</colHeading><colHeading>Phone Number Activated</colHeading><colHeading>Email Address</colHeading><colHeading>Hiragana Last Name</colHeading><colHeading>Hiragana First Name</colHeading><colHeading>In Trunk Group</colHeading><colHeading>Extension</colHeading><row><col>+35361616161@test.eircom.com</col><col>A</col><col>1</col><col>16161</col><col>616</col><col/><col>+353-61616161</col><col>true</col><col/><col>16161</col><col>616</col><col>false</col><col>6161</col></row></userTable></command></BroadsoftDocument>
+2017-03-10 12:23:54,200 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:54,201 DEBUG | ocip_functions | root |  FUNC: ocip_function.UserGetRequest21(session, search)       : 
+2017-03-10 12:23:54,201 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command xsi:type="UserGetRequest21" xmlns=""><userId>+35361616161@test.eircom.com</userId></command></BroadsoftDocument>
+2017-03-10 12:23:54,201 DEBUG | ocip_functions | root |  EXIT: ocip_function.UserGetRequest21(session, search)       : 
+2017-03-10 12:23:54,201 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:54,201 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command xsi:type="UserGetRequest21" xmlns=""><userId>+35361616161@test.eircom.com</userId></command></BroadsoftDocument>
+2017-03-10 12:23:54,202 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:56,209 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:23:56,216 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?>
+<BroadsoftDocument protocol="OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId><command echo="" xsi:type="UserGetResponse21" xmlns=""><serviceProviderId>1</serviceProviderId><groupId>A</groupId><lastName>16161</lastName><firstName>616</firstName><callingLineIdLastName>16161</callingLineIdLastName><callingLineIdFirstName>616</callingLineIdFirstName><hiraganaLastName>16161</hiraganaLastName><hiraganaFirstName>616</hiraganaFirstName><phoneNumber>061616161</phoneNumber><extension>6161</extension><callingLineIdPhoneNumber>+35361616161</callingLineIdPhoneNumber><language>English</language><timeZone>Eire</timeZone><timeZoneDisplayName>(GMT) Eire</timeZoneDisplayName><defaultAlias>+35361616161@test.eircom.com</defaultAlias><countryCode>353</countryCode><nationalPrefix>0</nationalPrefix></command></BroadsoftDocument>
+2017-03-10 12:23:56,216 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:56,218 INFO | mysockets | root |  FUNC: mysockets.bwlogout(self)       : 
+2017-03-10 12:23:56,218 DEBUG | ocip_functions | root |  FUNC: ocip_logut   : 
+2017-03-10 12:23:56,218 DEBUG | ocip_functions | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId>  <command xsi:type="LogoutRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <userId>admin</userId>  </command></BroadsoftDocument>
+2017-03-10 12:23:56,218 DEBUG | ocip_functions | root |  EXIT: ocip_logut   : 
+2017-03-10 12:23:56,218 DEBUG | mysockets | root |  FUNC: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:23:56,219 DEBUG | mysockets | root | <?xml version="1.0" encoding="ISO-8859-1"?><BroadsoftDocument protocol = "OCI" xmlns="C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <sessionId xmlns="">SI9SFRSZO4VJP59IRS4BRNP3I1DZHKEZ</sessionId>  <command xsi:type="LogoutRequest" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    <userId>admin</userId>  </command></BroadsoftDocument>
+2017-03-10 12:23:56,219 DEBUG | mysockets | root |  FUNC: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:24:00,219 DEBUG | mysockets | root |  EXIT: mysockets.recv_timeout(self, timeout)       : 
+2017-03-10 12:24:00,221 DEBUG | mysockets | root | 
+2017-03-10 12:24:00,222 INFO | mysockets | root |  EXIT: mysockets.sendreceive(self, cmd)       : 
+2017-03-10 12:24:00,222 INFO | mysockets | root |  EXIT: mysockets.bwlogout(self)       : 
+2017-03-10 12:24:00,222 DEBUG | mysockets | root |  FUNC: mysockets.close(self)       : 
+2017-03-10 12:24:00,223 DEBUG | mysockets | root |  EXIT: mysockets.close(self)       : 

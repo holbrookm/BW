@@ -19,6 +19,7 @@ import sessionid # Generate unique sessionid
 import re   #regex Library, used to search for XML <nonce> tag
 import ocip_functions as ocip  #used for building XML for BW.
 import logging_config
+import scriptio as sio
 
 try:
     import xml.etree.cElementTree as ET
@@ -29,6 +30,35 @@ sys.path.insert(0, '/root/Dropbox/PYTHON/Marc/ACTIVE/BW')  # Insert your base pa
 logger = logging_config.logger
 
 
+#Functions to be used within/on the class..
+
+def check_modify_result(result):
+    '''
+        Make sure that command response conatins the success tag.
+    '''
+    tree = ET.fromstring(result)
+    result = False
+    for b in tree.iter():
+        if b.tag == 'command' and b.attrib.values()[0] == 'c:SuccessResponse':
+            result = True # Successful command
+    return result
+
+def check_get_response(result):
+    '''
+        Make sure that command response conatins the success tag.
+    '''
+    tree = ET.fromstring(result)
+    result = False
+    for b in tree.iter():
+        if b.tag == 'command' and b.attrib.values()[0] == 'UserGetResponse21':
+            result = True # Successful command
+    return result
+
+
+
+
+
+    
 class BWconnect(object):
       
     def __init__(self):
@@ -217,12 +247,64 @@ class BWconnect(object):
         return
 
 
+    def get_service_providers_with_chosen_ncos(self, barring_category):
+        '''
+            Connect to BW and retrieve all Service Providers with NCOS choice.
+            Return list.
+        '''
+        logger.debug(" FUNC: mysockets.get_service_providers_with_chosen_ncos(self, barring_category)       : ")
+        xml = ocip.SystemNetworkClassOfServiceGetAssignedServiceProviderListRequest(self.sessionid, barring_category)
+        _list = self.sendreceive(xml)
+        result, ServiceProviders_NCOSList = sio.send_ColumnRowResponse_to_file(_list, sio.SystemNetworkClassOfServiceGetAssignedServiceProviderListRequestPath)
+        if not result:    
+            logger.error('mysockets:get_service_providers_with_chosen_ncos:: Service Provider - NCOS Listing not received.')
+        logger.debug("EXIT: mysockets.get_service_providers_with_chosen_ncos(self, barring_category)       : ")
+        return ServiceProviders_NCOSList
 
 
+    def get_system_ncos_options(self):
+        '''
+            Connect to BW and retrieve all System NCOS choices.
+            Return list.
+        '''
+        logger.debug(" FUNC: mysockets.get_system_ncos_options(self)       : ")
+        xml = ocip.SystemNetworkClassOfServiceGetListRequest(self.sessionid)
+        qresult = self.sendreceive(xml)
+        result, SystemNcosList = sio.send_ColumnRowResponse_to_file(qresult, sio.SystemNetworkClassOfServiceGetListRequestPath)
+        if not result: 
+            logger.error('mysockets.get_system_ncos_options:: NCOS Listing not received.')
+        logger.debug("EXIT: mysockets.get_system_ncos_options(self)       : ")
+        return SystemNcosList
 
 
-
-
+    def get_user_ncos(self, userid):
+        '''
+            Connect to BW and retrieve User NCOS and other information. 
+            This should be expanded later.
+        '''
+        
+        logger.debug('FUNC: mysockets.get_user_ncos(conn, userid)        ')
+        xml = ocip.UserGetRequest21(self.sessionid, userid) # Take first element from list
+        result = self.sendreceive(xml)
+        if not(check_get_response(result)):
+            logger.error('Error: userlist = ocip.UserGetRequest21(conn.sessionid, userid) Failure')
+        else:
+            #Start Modifying NCOS 
+            tree = ET.fromstring(result)
+            for branch in tree.iter():
+                #Set useful parameters for later use.
+                if branch.tag == 'serviceProviderId':
+                    ServiceProvider = branch.text
+                elif branch.tag == 'groupId':
+                    GroupId = branch.text
+                elif branch.tag == 'networkClassOfService': #Check for incorrect NCOS
+                    Ncos = branch.text
+                else:
+                    pass
+        logger.debug('EXIT: mysockets.get_user_ncos(conn, userid)        ')
+        
+        return ServiceProvider, GroupId, userid, Ncos 
+                  
 
 
 
