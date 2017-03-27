@@ -16,11 +16,7 @@
 
 import debug
 import logging_config
-
-#_ociuser = 'admin@web.ngv.eircom.net'
-#_ocipass = '&VQ|FrDb*)'
-_ociuser = 'admin'
-_ocipass = 'admin'
+from config import _ociuser, _ocipass
 _timeout = 30
 
 
@@ -260,6 +256,74 @@ def ServiceProviderNetworkClassOfServiceGetAssignedListRequest(session, enterpri
     
     return (encoded_body)         
 
+def ServiceProviderNetworkClassOfServiceAssignListRequest21(session, enterprise, ncos):
+    '''
+        Get System Provider assigned NCOS categories from BW
+    '''
+    logger.debug(" FUNC: ocip_function.ServiceProviderNetworkClassOfServiceAssignListRequest21(session, enterprise, ncos)       : ")
+    head = ocip_head(session)
+    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/ServiceProviderNetworkClassOfServiceAssignListRequest21.xml.tmpl').format(enterprise, ncos)
+    tail = ocip_bottom()
+
+    insert_xml = head + command + tail
+    encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
+    logger.debug(encoded_body)
+    logger.debug(" EXIT: ocip_function.ServiceProviderNetworkClassOfServiceAssignListRequest21(session, enterprise, ncos       : ")
+    
+    return (encoded_body)         
+    
+def ExistingServiceProviderNetworkClassOfServiceAssignListRequest21(session, enterprise, ncos):
+    '''
+        Get System Provider assigned NCOS categories from BW
+    '''
+    logger.debug(" FUNC: ocip_function.ExistingServiceProviderNetworkClassOfServiceAssignListRequest21(session, enterprise, ncos)       : ")
+    head = ocip_head(session)
+    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/ExistingServiceProviderNetworkClassOfServiceAssignListRequest21.xml.tmpl').format(enterprise, ncos)
+    tail = ocip_bottom()
+
+    insert_xml = head + command + tail
+    encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
+    logger.debug(encoded_body)
+    logger.debug(" EXIT: ocip_function.ExistingServiceProviderNetworkClassOfServiceAssignListRequest21(session, enterprise, ncos       : ")
+    
+    return (encoded_body)           
+
+def GroupNetworkClassOfServiceAssignListRequest21(session, enterprise, group, ncos):
+    '''
+        Get System Provider assigned NCOS categories from BW
+    '''
+    logger.debug(" FUNC: ocip_function.GroupNetworkClassOfServiceAssignListRequest21(session, enterprise, group, ncos)       : ")
+    head = ocip_head(session)
+    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/GroupNetworkClassOfServiceAssignListRequest21.xml.tmpl').format(enterprise, group, ncos)
+    tail = ocip_bottom()
+
+    insert_xml = head + command + tail
+    encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
+    logger.debug(encoded_body)
+    logger.debug(" EXIT: ocip_function.GroupNetworkClassOfServiceAssignListRequest21(session, enterprise, group, ncos       : ")
+    
+    return (encoded_body)         
+    
+def ExistingGroupNetworkClassOfServiceAssignListRequest21(session, enterprise, group,  ncos):
+    '''
+        Get System Provider assigned NCOS categories from BW
+    '''
+    logger.debug(" FUNC: ocip_function.ExistingGroupNetworkClassOfServiceAssignListRequest21(session, enterprise, group, ncos)       : ")
+    head = ocip_head(session)
+    command = __readinxml__('/root/Dropbox/PYTHON/Marc/ACTIVE/BW/xml/ExistingGroupNetworkClassOfServiceAssignListRequest21.xml.tmpl').format(enterprise, group, ncos)
+    tail = ocip_bottom()
+
+    insert_xml = head + command + tail
+    encoded_body = insert_xml.replace("\n", "")
+    encoded_body = encoded_body.replace('&', '&amp;')
+    logger.debug(encoded_body)
+    logger.debug(" EXIT: ocip_function.ExistingGroupNetworkClassOfServiceAssignListRequest21(session, enterprise, group, ncos       : ")
+    
+    return (encoded_body)         
+    
     
 def ocip_modify_user_outgoing_calling_plan(session, userid):
     '''

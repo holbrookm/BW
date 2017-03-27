@@ -1,33 +1,70 @@
 Name,Description
-CB-UC-testing,tom-test-desc
-Incoming Service Barred,Incoming Service Barred
-Mobile & Personal Number Call Barring,Mobile & Personal Number Call Barring
-None,No Barring.
-Outgoing Service Barred,Outgoing Service Barred
-"PR, INT, CC, MO & NAT Call Barring","PR, INT, CC, MO & NAT Call Barring"
-"PR, INT, CC, MO & PN Call Barring","PR, INT, CC, MO & PN Call Barring"
-"Premium Rate, INT, Cross Channel","Premium Rate, International, Cross Channel Call Barring"
-Premium Rate & INT call barring,Premium Rate & International Call Barring
-Premium Rate Call Barring,Premium Rate Call Barring
+Incoming Service Barring,Incoming Service Barring
+Mobile and Personal number barring,Mobile and Personal number barring
+NONE,NO BARRING PROFILE
+Outgoing Service Barring,Outgoing Service barring
+PRS+ISD+XCH+MO+NAT BARRED,PRS+ISD+XCH+MO+NAT BARRED
+PRS+ISD+XCH+MO+PN BARRED,PRS+ISD+XCH+MO+PN BARRED
+PRS+ISD+XCH BARRED,PRS+ISD+XCH BARRED
+PRS+ISD BARRED,PRS+ISD BARRED
+PRS BARRED,PRS BARRED
 Name,Description
-CB-UC-testing,tom-test-desc
-Incoming Service Barred,Incoming Service Barred
-Mobile & Personal Number Call Barring,Mobile & Personal Number Call Barring
-None,No Barring.
-Outgoing Service Barred,Outgoing Service Barred
-"PR, INT, CC, MO & NAT Call Barring","PR, INT, CC, MO & NAT Call Barring"
-"PR, INT, CC, MO & PN Call Barring","PR, INT, CC, MO & PN Call Barring"
-"Premium Rate, INT, Cross Channel","Premium Rate, International, Cross Channel Call Barring"
-Premium Rate & INT call barring,Premium Rate & International Call Barring
-Premium Rate Call Barring,Premium Rate Call Barring
+Incoming Service Barring,Incoming Service Barring
+Mobile and Personal number barring,Mobile and Personal number barring
+NONE,NO BARRING PROFILE
+Outgoing Service Barring,Outgoing Service barring
+PRS+ISD+XCH+MO+NAT BARRED,PRS+ISD+XCH+MO+NAT BARRED
+PRS+ISD+XCH+MO+PN BARRED,PRS+ISD+XCH+MO+PN BARRED
+PRS+ISD+XCH BARRED,PRS+ISD+XCH BARRED
+PRS+ISD BARRED,PRS+ISD BARRED
+PRS BARRED,PRS BARRED
 Name,Description
-CB-UC-testing,tom-test-desc
-Incoming Service Barred,Incoming Service Barred
-Mobile & Personal Number Call Barring,Mobile & Personal Number Call Barring
-None,No Barring.
-Outgoing Service Barred,Outgoing Service Barred
-"PR, INT, CC, MO & NAT Call Barring","PR, INT, CC, MO & NAT Call Barring"
-"PR, INT, CC, MO & PN Call Barring","PR, INT, CC, MO & PN Call Barring"
-"Premium Rate, INT, Cross Channel","Premium Rate, International, Cross Channel Call Barring"
-Premium Rate & INT call barring,Premium Rate & International Call Barring
-Premium Rate Call Barring,Premium Rate Call Barring
+Incoming Service Barring,Incoming Service Barring
+Mobile and Personal number barring,Mobile and Personal number barring
+NONE,NO BARRING PROFILE
+Outgoing Service Barring,Outgoing Service barring
+PRS+ISD+XCH+MO+NAT BARRED,PRS+ISD+XCH+MO+NAT BARRED
+PRS+ISD+XCH+MO+PN BARRED,PRS+ISD+XCH+MO+PN BARRED
+PRS+ISD+XCH BARRED,PRS+ISD+XCH BARRED
+PRS+ISD BARRED,PRS+ISD BARRED
+PRS BARRED,PRS BARRED
+Name,Description
+Incoming Service Barring,Incoming Service Barring
+Mobile and Personal number barring,Mobile and Personal number barring
+NONE,NO BARRING PROFILE
+Outgoing Service Barring,Outgoing Service barring
+PRS+ISD+XCH+MO+NAT BARRED,PRS+ISD+XCH+MO+NAT BARRED
+PRS+ISD+XCH+MO+PN BARRED,PRS+ISD+XCH+MO+PN BARRED
+PRS+ISD+XCH BARRED,PRS+ISD+XCH BARRED
+PRS+ISD BARRED,PRS+ISD BARRED
+PRS BARRED,PRS BARRED
+Name,Description
+Incoming Service Barring,Incoming Service Barring
+Mobile and Personal number barring,Mobile and Personal number barring
+NONE,NO BARRING PROFILE
+Outgoing Service Barring,Outgoing Service barring
+PRS+ISD+XCH+MO+NAT BARRED,PRS+ISD+XCH+MO+NAT BARRED
+PRS+ISD+XCH+MO+PN BARRED,PRS+ISD+XCH+MO+PN BARRED
+PRS+ISD+XCH BARRED,PRS+ISD+XCH BARRED
+PRS+ISD BARRED,PRS+ISD BARRED
+PRS BARRED,PRS BARRED
+Name,Description
+Incoming Service Barring,Incoming Service Barring
+Mobile and Personal number barring,Mobile and Personal number barring
+NONE,NO BARRING PROFILE
+Outgoing Service Barring,Outgoing Service barring
+PRS+ISD+XCH+MO+NAT BARRED,PRS+ISD+XCH+MO+NAT BARRED
+PRS+ISD+XCH+MO+PN BARRED,PRS+ISD+XCH+MO+PN BARRED
+PRS+ISD+XCH BARRED,PRS+ISD+XCH BARRED
+PRS+ISD BARRED,PRS+ISD BARRED
+PRS BARRED,PRS BARRED
+Name,Description
+Incoming Service Barring,Incoming Service Barring
+Mobile and Personal number barring,Mobile and Personal number barring
+NONE,NO BARRING PROFILE
+Outgoing Service Barring,Outgoing Service barring
+PRS+ISD+XCH+MO+NAT BARRED,PRS+ISD+XCH+MO+NAT BARRED
+PRS+ISD+XCH+MO+PN BARRED,PRS+ISD+XCH+MO+PN BARRED
+PRS+ISD+XCH BARRED,PRS+ISD+XCH BARRED
+PRS+ISD BARRED,PRS+ISD BARRED
+PRS BARRED,PRS BARRED

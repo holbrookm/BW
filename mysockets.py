@@ -20,12 +20,16 @@ import re   #regex Library, used to search for XML <nonce> tag
 import ocip_functions as ocip  #used for building XML for BW.
 import logging_config
 import scriptio as sio
+from time import sleep
 
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
     import xml.etree.ElementTree as ET
 
+#SET_LAB_FLAG = True
+SET_LAB_FLAG = False
+    
 sys.path.insert(0, '/root/Dropbox/PYTHON/Marc/ACTIVE/BW')  # Insert your base path here for libraries
 logger = logging_config.logger
 
@@ -88,10 +92,13 @@ class BWconnect(object):
 
         logger.debug(" FUNC: mysockets.__init__(self)       : ")
         
-        #self.xsp_host ='10.144.70.198'   #Live Node SRL BW XSP-WA
-        self.xsp_host = '10.144.134.198'   # Test Plant
-        #self.live = True
-        self.live = False
+        if SET_LAB_FLAG == True:
+            self.live = False
+            self.xsp_host = '10.144.134.198'   # Test Plant
+        else:
+            self.xsp_host ='10.144.70.198'   #Live Node SRL BW XSP-WA
+            self.live = True
+        
         self.ocip_port = 2208
         self.sessionid = sessionid.id_generator(32)
         self.nonce = ''
@@ -133,12 +140,12 @@ class BWconnect(object):
         return
 
 
-    def recv_timeout(self,timeout=2):
+    def recv_timeout(self,timeout=3):
         '''
             This function retrieves the API response. 
             The receive part of send receive.
         '''
-        logger.debug(" FUNC: mysockets.recv_timeout(self, timeout)       : ")
+        #logger.debug(" FUNC: mysockets.recv_timeout(self, timeout)       : ")
         
         #make socket non blocking
         self.s.setblocking(0)     
@@ -170,7 +177,7 @@ class BWconnect(object):
                 pass
          
         #join all parts to make final string
-        logger.debug(" EXIT: mysockets.recv_timeout(self, timeout)       : ")
+        #logger.debug(" EXIT: mysockets.recv_timeout(self, timeout)       : ")
         return (''.join(total_data))
 
     def sendreceive(self, cmd):
@@ -178,9 +185,9 @@ class BWconnect(object):
             This function combines send and receive into one action. 
             Send using sendall(), receive using recv_timeout().
         '''
-        logger.debug(" FUNC: mysockets.sendreceive(self, cmd)       : ")   
+        #logger.debug(" FUNC: mysockets.sendreceive(self, cmd)       : ")   
         try: # SEND
-            logger.debug(cmd)
+            #logger.debug(cmd)
             self.s.sendall(cmd)
         except socket.error:
         #Send failed
@@ -192,12 +199,12 @@ class BWconnect(object):
             sys.exit()
         try: # RECEIVE
             response = self.recv_timeout(2).strip()
-            logger.debug(response)
+            logger.debug(str('RESPONSE :: ' + response))
         except:
             #Receive failed
             logger.error(str('Receive failed:  ' + cmd))
             sys.exit()
-        logger.info(" EXIT: mysockets.sendreceive(self, cmd)       : ")
+        #logger.debug(" EXIT: mysockets.sendreceive(self, cmd)       : ")
         return response
 
     def bwlogin(self):
@@ -252,13 +259,13 @@ class BWconnect(object):
             Connect to BW and retrieve all Service Providers with NCOS choice.
             Return list.
         '''
-        logger.debug(" FUNC: mysockets.get_service_providers_with_chosen_ncos(self, barring_category)       : ")
+        logger.info(" FUNC: mysockets.get_service_providers_with_chosen_ncos(self, barring_category)       : ")
         xml = ocip.SystemNetworkClassOfServiceGetAssignedServiceProviderListRequest(self.sessionid, barring_category)
         _list = self.sendreceive(xml)
         result, ServiceProviders_NCOSList = sio.send_ColumnRowResponse_to_file(_list, sio.SystemNetworkClassOfServiceGetAssignedServiceProviderListRequestPath)
         if not result:    
             logger.error('mysockets:get_service_providers_with_chosen_ncos:: Service Provider - NCOS Listing not received.')
-        logger.debug("EXIT: mysockets.get_service_providers_with_chosen_ncos(self, barring_category)       : ")
+        logger.info("EXIT: mysockets.get_service_providers_with_chosen_ncos(self, barring_category)       : ")
         return ServiceProviders_NCOSList
 
 
@@ -267,13 +274,13 @@ class BWconnect(object):
             Connect to BW and retrieve all System NCOS choices.
             Return list.
         '''
-        logger.debug(" FUNC: mysockets.get_system_ncos_options(self)       : ")
+        logger.info(" FUNC: mysockets.get_system_ncos_options(self)       : ")
         xml = ocip.SystemNetworkClassOfServiceGetListRequest(self.sessionid)
         qresult = self.sendreceive(xml)
         result, SystemNcosList = sio.send_ColumnRowResponse_to_file(qresult, sio.SystemNetworkClassOfServiceGetListRequestPath)
         if not result: 
             logger.error('mysockets.get_system_ncos_options:: NCOS Listing not received.')
-        logger.debug("EXIT: mysockets.get_system_ncos_options(self)       : ")
+        logger.info("EXIT: mysockets.get_system_ncos_options(self)       : ")
         return SystemNcosList
 
 
@@ -283,7 +290,7 @@ class BWconnect(object):
             This should be expanded later.
         '''
         
-        logger.debug('FUNC: mysockets.get_user_ncos(conn, userid)        ')
+        logger.info('FUNC: mysockets.get_user_ncos(conn, userid)        ')
         xml = ocip.UserGetRequest21(self.sessionid, userid) # Take first element from list
         result = self.sendreceive(xml)
         if not(check_get_response(result)):
@@ -301,12 +308,89 @@ class BWconnect(object):
                     Ncos = branch.text
                 else:
                     pass
-        logger.debug('EXIT: mysockets.get_user_ncos(conn, userid)        ')
+        logger.info('EXIT: mysockets.get_user_ncos(conn, userid)        ')
         
         return ServiceProvider, GroupId, userid, Ncos 
                   
 
+    def add_ncos_to_system_provider(self, sub, barring_category):
+        '''
+            Connect to BW and check what NCOS are assigned to SP.
+            If nothing, then add ncos in question and 'None' and assign default as 'None'. 
+        '''
+        logger.info(('FUNC: mysockets.add_ncos_to_system_provider(self, {0}, {1})        ').format(sub, barring_category))
+        userid,ServiceProvider, GroupId = sub[0], sub[1], sub[2]
+        command = ocip.ServiceProviderNetworkClassOfServiceGetAssignedListRequest(self.sessionid, ServiceProvider) # Get list of NCOS assigned to the failed sub Service Provider
+        result = self.sendreceive(command) 
+        response, ServiceProviderNcosList = sio.send_ColumnRowResponse_to_file(result, sio.ServiceProviderNetworkClassOfServiceGetAssignedListRequestPath) #Write response to file
+        ServiceProviderNcosList.pop(0) # remove headers
+        #result will be in the format ['Name', 'Description', 'Default']
+        found = False #temp var
+        exit_code = True
+        if ServiceProviderNcosList:
+            #NCOS exists in the XML for User
+            for elem in ServiceProviderNcosList:
+                if barring_category in elem[0]:
+                    print('Barring category available to the subscription Service provider.')
+                    found = True
+            if not found:
+                print(str('Barring category not in Service Provider {0} assigned listing. This must be added.').format(ServiceProvider))
+                print ('Add Barring function')
+                xml = ocip.ExistingServiceProviderNetworkClassOfServiceAssignListRequest21(self.sessionid, ServiceProvider, barring_category)
+                result = self.sendreceive(xml)
+                if not(check_modify_result(result)):
+                    logger.error(('Error: userlist = ocip.ExistingServiceProviderNetworkClassOfServiceAssignListRequest21  ({0}, {1], {2}) Failure').format(ServiceProvider, GroupId, barring_category))
+                    exit_code = False
+ 
+        else: #NCOS List is empty for Service Provider/Enterprise so add Barring Category, None and set default to None.
+            #
+            print('Add Barring/None and Default')
+            xml = ocip.ServiceProviderNetworkClassOfServiceAssignListRequest21(self.sessionid, ServiceProvider, barring_category)
+            result = self.sendreceive(xml)
+            if not(check_modify_result(result)):
+                logger.error(('Error: userlist = ocip.ServiceProviderNetworkClassOfServiceAssignListRequest21 ({0}, {1], {2}) Failure').format(ServiceProvider, GroupId, barring_category))
+                exit_code = False
+        
+        logger.info(('EXIT: mysockets.add_ncos_to_system_provider(self, {0}, {1})        ').format(sub, barring_category))
+        return exit_code
 
-
-
-
+    def add_ncos_to_group(self, sub, barring_category):
+        '''
+            Connect to BW and check what NCOS are assigned to Group.
+            If nothing, then add ncos in question and 'None' and assign default as 'None'. 
+        '''
+        logger.debug(('FUNC: mysockets.add_ncos_to_group(self, {0}, {1})        ').format(sub, barring_category))
+        exit_code = True
+        userid,ServiceProvider, GroupId = sub[0], sub[1], sub[2]
+        command = ocip.GroupNetworkClassOfServiceGetAssignedListRequest(self.sessionid, ServiceProvider, GroupId) # Get list of NCOS assigned to the failed subs Trunk Group
+        result = self.sendreceive(command)
+        response, GroupNcosList = sio.send_ColumnRowResponse_to_file(result, sio.GroupNetworkClassOfServiceGetAssignedListRequestPath) # Write response from BW to CSV file.
+        #sleep(1)
+        # Result will be in the format ['Name', 'Description', 'Default']
+        GroupNcosList.pop(0) # remove headers
+        found = False
+        if GroupNcosList:
+            for elem in GroupNcosList:
+                if barring_category in elem[0]:
+                    print ('Barring category is in Group.')
+                    found = True
+            if not found:
+                print(str('Barring category not in Trunk Group {0} assigned listing. This must be added.').format(GroupId))
+                xml = ocip.ExistingGroupNetworkClassOfServiceAssignListRequest21(self.sessionid, ServiceProvider, GroupId, barring_category)
+                result = self.sendreceive(xml)
+                if not(check_modify_result(result)):
+                    logger.error(('Error: userlist = ocip.ExistingServiceProviderNetworkClassOfServiceAssignListRequest21({0}, {1], {2}) Failure').format(ServiceProvider, GroupId, barring_category))
+                    exit_code = False
+ 
+        else:
+            print('Add Barring/None and Default')
+            xml = ocip.GroupNetworkClassOfServiceAssignListRequest21(self.sessionid, ServiceProvider, GroupId, barring_category)
+            result = self.sendreceive(xml)
+            if not(check_modify_result(result)):
+                logger.error(('Error: userlist = ocip.GroupNetworkClassOfServiceAssignListRequest21({0}, {1], {2}) Failure').format(ServiceProvider, GroupId, barring_category))
+                exit_code = False
+        
+        logger.debug(('EXIT: mysockets.add_ncos_to_group(self, {0}, {1})        ').format(sub, barring_category))
+        return exit_code
+                
+                
